@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# install brew
+echo 'installing homebrew...'
+ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
+
+# install homerun things
+sh "$HOME/.conf/homerun/lib/install"
+
+mkdir "$HOME/.cache"
