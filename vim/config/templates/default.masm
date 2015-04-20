@@ -1,0 +1,11 @@
+.MODEL small
+.STACK 1024
+.DATA
+
+
+.CODE
+main:
+	mov ax, @data
+	mov ds, ax
+
+end main

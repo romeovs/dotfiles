@@ -1,0 +1,297 @@
+" VIMRC
+" author: Romeo Van Snick
+" e-mail: romeovs@gmail.com
+
+
+" disable compatible mode
+set nocompatible
+
+" set correct vimdir
+set runtimepath+=$XDG_CONFIG_HOME/vim/config/
+
+" NEOBUNDLE <<
+if has('vim_starting')
+  set runtimepath+=$XDG_CONFIG_HOME/vim/config/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('$XDG_CONFIG_HOME/vim/config/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\   'mac' : 'make -f make_mac.mak',
+\ }}
+" >>
+
+" PLUGINS <<
+NeoBundle 'tpope/vim-surround'    " mappings to work with ' ( etc
+NeoBundle 'tpope/vim-repeat'      " repeat more stuff
+NeoBundle 'edsono/vim-matchit'    " better matching with %
+NeoBundle 'godlygeek/tabular'     " table alignment
+" >>
+
+" FILETYPE PLUGINS <<
+NeoBundleLazy 'eagletmt/ghcmod-vim', {
+\ 'autooad': {
+\   'commands': [ 'GhcModType', 'GhcModTypeClear',
+\                 'GhcModCheckAsync', 'GhcModCheck',
+\                 'GhcModLintAsync', 'GhcModLint' ]
+\ }}
+
+NeoBundleLazy 'rstacruz/sparkup', {
+\ 'autoload': {
+\   'filetypes': ['html', 'html5', 'php']
+\ }}
+
+NeoBundle 'niklasl/vim-rdf'                   " RDF, turtle, ...
+NeoBundle 'eagletmt/neco-ghc'                 " Haskell complete
+NeoBundle 'vim-scripts/applescript.vim'       " applescript
+NeoBundle 'othree/html5.vim'                  " html5
+NeoBundle 'mustache/vim-mustache-handlebars'  " mustache / handlebars
+NeoBundle 'wavded/vim-stylus'                 " stylus
+NeoBundle 'evanmiller/nginx-vim-syntax'       " nginx
+NeoBundle 'tpope/vim-markdown'                " markdown
+NeoBundle 'vim-scripts/octave.vim'            " octave
+NeoBundle 'killphi/vim-ebnf'                  " ebnf
+NeoBundle 'guns/vim-clojure-static'           " clojure
+NeoBundle 'tpope/vim-rails'                   " Ruby Rails
+NeoBundle 'kchmck/vim-coffee-script'          " coffeescript
+NeoBundle 'idris-hackers/idris-vim'           " idris
+NeoBundle 'derekelkins/agda-vim'              " agda
+NeoBundle 'statianzo/vim-jade'                " jade
+NeoBundle 'wlangstroth/vim-racket'            " racket
+NeoBundle 'nickng/vim-scribble'               " scribble
+NeoBundle 'alunny/pegjs-vim'                  " pegjs
+NeoBundle 'jsx/jsx'                           " jsx
+NeoBundle 'pangloss/vim-javascript'           " js
+
+" >>
+
+" FIX TIMEOUTS <<
+set timeout
+set timeoutlen=750
+set timeoutlen=250
+" >>
+
+" COLORS <<
+syntax on                  " enable syntax highlighting
+filetype plugin indent on  " enable filetyp and indentation
+colorscheme custom         " color schme
+set cursorline             " highlight cursor line
+set number                 " enable linenumbers
+" >>
+
+" INDENTATION <<
+set softtabstop=0 " don't use soft tabstops
+set tabstop=2     " width of tab character
+set shiftwidth=2  " > > moves 4 spaces
+set shiftround    " > and < round to shiftwidth
+set expandtab     " expand tabs to spaces
+set smarttab      " backspace over expand tabs
+set noautoindent  " don't autoindent
+set smartindent   " do use smartindent
+set nocindent     " no strict indentation
+" >>
+
+" listchars <<
+" set listchars to only show tabs and trailing whitespace
+exec "set listchars=trail:\uB7,nbsp:_"
+set listchars+=tab:»\ 
+set list
+" >>
+
+" wrapping <<
+set textwidth=80        " wrap to 80
+set formatoptions-=t    " don't wrap automatically
+set nowrap              " no line wrapping
+" >>
+
+" search <<
+set incsearch   " search is incremental
+set wrapscan    " wrap search
+set nohlsearch  " don't highlight matches in search
+set ignorecase  " ignore case in search
+" >>
+
+" drawing and shell <<
+set vb t_vb=            " disable visual bells
+set mouse=n             " enable mouse in normal mode
+" >>
+
+" conceal and fill <<
+set conceallevel=0      " don't conceal chars
+set fillchars=fold:\ ,stl:\ ,stlnc:\ ,vert:\|
+" >>
+
+" file handling <<
+set encoding=utf-8  " set file encoding
+set autoread        " auto read the file if it was modified
+set autochdir       " automatically change to dir of file
+set suffixes=.log,.aux,.out,,.pdf,.o,.hi
+" >>
+
+" text handling <<
+set backspace=eol,start,indent " allow to backspace over these characters
+set nrformats+=alpha           " also add/subtract alphabet
+set cpo+=J                     " two space after sentence
+" >>
+
+" windows <<
+set scrolloff=8         " set 8 lines of padding top/bottom while scrolling
+set equalalways         " make splits equal
+" >>
+
+" SWAP <<
+set undodir=~/.cache/nvim/undo
+set undofile
+
+set noswapfile
+set directory=~/.cache/nvim/swap
+
+set backup
+set nowritebackup
+set backupdir=~/.cache/nvim/backup
+
+let g:netrw_home="~/.cache/nvim/"
+set viminfo='100,n$HOME/.cache/nvim/viminfo  " viminfo location
+" >>
+
+" FOLDING <<
+" sets the fold text
+function! FoldText()
+  let nl   = v:foldend + v:foldstart + 1
+  let text = substitute(getline(v:foldstart), "^ *", "", "")
+  let text = substitute(text, "{{{", "", 1) " }}}
+  let text = substitute(text, split(&cms, "%s")[0], "", "")
+  let text = substitute(text, split(&cms, "%s")[1], "", "")
+  let text = substitute(text, "^ ", "", "")
+  let lvl  = substitute(v:folddashes, "-", "·", "g")
+  let fill = repeat(' ', (winwidth(0) - strlen(lvl . " " .  text . "(". nl ." lines)")-9))
+  let foldtext = " " . text . " " .lvl . fill . "(" . nl . " lines)"
+  return foldtext
+endfunction
+set foldcolumn=2
+set foldtext=FoldText()
+" >>
+
+" MAP KEYS <<
+
+" escape with jkl
+imap jkl <esc>
+
+" toggle folds with space
+nnoremap <space> za
+
+" better save
+noremap § :write<cr>
+noremap - :write<cr>
+
+" better quit
+nnoremap Q  :q<cr>
+nnoremap q: :q<cr>
+
+" tabs
+nmap t :tabnew 
+nmap <silent> <tab>   :tabnext<cr>
+nmap <silent> <S-tab> :tabprev<cr>
+
+" commandline begin and end
+cno <C-a> <Home>
+cno <C-e> <End>
+
+inoremap <C-a> <NOP>
+inoremap <C-e> <NOP>
+
+" bubble lines
+NeoBundle 'tpope/vim-unimpaired'  " bracket mappings
+nmap <silent> <up> [e
+nmap <silent> <down> ]e
+
+vmap <silent> <up>   [egv
+vmap <silent> <down> ]egv
+
+" quick indent with arrow keys
+nnoremap <left>  <<
+nnoremap <right> >>
+
+vnoremap <left>  <gv
+vnoremap <right> >gv
+
+vnoremap < <gv
+vnoremap > >gv
+
+" paste mode
+nnoremap <silent> yp :set paste<cr>i
+au InsertLeave * set nopaste
+
+" >>
+
+" COMMENTS <<
+NeoBundleLazy 'tomtom/tcomment_vim', {
+\  'autoload': {
+\    'commands': ['TComment']
+\  }}
+
+
+" add comment types
+au FileType php   set commentstring=<!--\ %s\ -->
+au FileType agda  set commentstring=--\ %s
+au FileType idris set commentstring=--\ %s
+au FileType jsx   set commentstring=//\ %s
+
+" map keys
+nmap       <silent> '  :TComment<CR>
+vmap       <silent> '  :TComment<CR>
+
+" >>
+
+" STATUSLINE AND COMMANDLINE <<
+NeoBundle 'bling/vim-airline'
+
+set showcmd       " show command being typed
+set shortmess=a   " truncate messages
+set cmdheight=2   " set the command line height to 2 lines
+set noshowmode    " don't show mode
+set laststatus=2
+
+let g:airline_theme='custom'
+
+let g:airline_symbols   = {}
+let g:airline_left_sep  = ''
+let g:airline_right_sep = ''
+let g:airline_section_warning = ' '
+let g:airline_powerline_fonts = 1
+let g:airline_section_b = '%f%m'
+function! AirlineInit()
+  let g:airline_section_c = airline#section#create(['filetype'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+let g:airline_section_x = 'u%04b 0x%04B'
+" >>
+
+" show syntax stack <<
+function! SynStack()
+    if !exists('*synstack')
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), "synIDattr(v:val, 'name')")
+endfunc
+" >>
+
+" editor config <<
+NeoBundle 'vim-scripts/PreserveNoEOL'      " for editorconfig
+NeoBundle 'editorconfig/editorconfig-vim'  " editorconfig
+let g:EditorConfig_verbose = 1
+let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+" >>
+
+" TEMPLATES <<
+NeoBundle 'aperezdc/vim-template' " templates
+let g:templates_name_prefix = 'default'
+let g:templates_global_name_prefix = 'default'
+let g:templates_directory = '/Users/romeovs/.nvim/templates'
+" >>
+
+call neobundle#end()
+
+" vim: fdm=marker foldmarker=<<,>>
