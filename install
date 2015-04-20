@@ -1,0 +1,25 @@
+
+
+# QUICKLOOK PLUGINS
+# adds colors to quicklook preview
+brew cask install qlcolorcode
+
+# add ql support for files w/o extension
+brew cask install qlstephen
+
+# add markdown support
+brew cask install qlmarkdown
+
+# add webp support
+brew cask install webpquicklook
+
+# shows image dimension and size in title
+brew cask install qlimagesize
+
+
+# SIMBL
+brew cask install easysimbl
+
+# MouseTerm: https://bitheap.org/mouseterm/
+
+# vim: ft=zsh
