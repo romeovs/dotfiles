@@ -1,0 +1,2 @@
+brew install editorconfig
+ln -s $(pwd)/editor.conf ~/.editorconfig
