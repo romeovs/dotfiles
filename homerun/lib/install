@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+for dir in "$XDG_CONFIG_HOME"/*; do
+  if [ -d "$dir" ]; then
+
+    install="$dir/install"
+
+    if [ -f "$install" ]; then
+      echo including ${install}...;
+      sh "$install";
+    fi
+
+  fi
+done

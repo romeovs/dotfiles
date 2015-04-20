@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+for dir in "$XDG_CONFIG_HOME"/*; do
+  if [ -d "$dir" ]; then
+
+    include="$dir/include"
+
+    if [ -f "$include" ]; then
+      echo including ${include}...;
+      source $include
+    fi
+  fi
+done
