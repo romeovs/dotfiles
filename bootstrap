@@ -1,10 +1,15 @@
 #!/usr/bin/env sh
 
+# set up config
+export XDG_CONFIG_HOME="$HOME/.conf"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 # install brew
 echo 'installing homebrew...'
 ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
 
 # install homerun things
-sh "$HOME/.conf/homerun/lib/install"
+sh "$XDG_CONFIG_HOME/homerun/lib/install"
 
-mkdir "$HOME/.cache"
+# intialize cache dir
+mkdir "$XDG_CACHE_HOME"
