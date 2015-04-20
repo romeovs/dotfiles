@@ -1,0 +1,3 @@
+brew install zsh
+cp ./zshenv "$HOME"/.zshenv
+# vim: ft=zsh

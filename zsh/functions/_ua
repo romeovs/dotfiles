@@ -1,0 +1,22 @@
+#compdef ua
+
+_ua () {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments '1: :->course' \
+               '2: :->part'
+
+    case $state in
+        course)
+            _arguments '1:courses:_directories -W ~/Documents/ua'
+            ;;
+        part)
+            _arguments "2:subdir:_directories -W ~/Documents/ua/${words[2]}"
+            ;;
+    esac
+}
+
+_ua "$@"
+
+# vim: ft=zsh

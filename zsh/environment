@@ -1,0 +1,21 @@
+
+# fix locale
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# set paths
+export GNUTERM=X11
+export HOMEBREW_PREFIX=`brew --prefix`
+export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# set default programs
+export EDITOR="vim -p"
+export PAGER="less"
+export LESS='-RI'
+export LESSHISTFILE="-"
+
+# octave & gnuplot
+export OCTAVE_HISTFILE="${XDG_CACHE_FILE}/octave/hist"
+export GNUPLOT=${HOME}/.config/
+
+# vim: ft=zsh

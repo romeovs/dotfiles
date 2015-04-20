@@ -1,0 +1,210 @@
+# if [ -z "$TMUX" ]; then
+    # exec tmux;
+# fi
+
+# needs to be done here instead of zshenv to prevent /etc/profile from
+# overwriting it
+export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
+
+export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
+export LS_COLORS="di=00;31:ex=00;37:mi=00;41;30:tw=00;33"
+
+# KEYBINDS {{{
+KEYTIMEOUT=1
+typeset -g -A key
+bindkey -v                                      # vi keybinding
+bindkey -M viins '^?' backward-delete-char      # but with normal backspace
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^B' vi-backward-blank-word
+bindkey '^W' vi-forward-blank-word
+bindkey '^K' kill-line
+bindkey '^U' backward-kill-line
+bindkey '^F' vi-find-next-char
+bindkey '^G' vi-find-prev-char
+bindkey '   ' complete-word # complete on tab, leave expansion to _expand
+bindkey '^[[Z' reverse-menu-complete
+bindkey '^R' vi-change-whole-line
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^f' vi-forward-word
+
+
+stty erase  &>/dev/null
+# }}}
+
+# OPTIONS {{{
+setopt LONG_LIST_JOBS       # list jobs in long format by default
+setopt CORRECT              # try command correction
+setopt MENUCOMPLETE         # insert first complete automatically
+setopt NOTIFY               # print bg job status immediatly
+setopt AUTO_RESUME          # one word commands resume the corresponding process
+setopt NOCLOBBER            # do not overwrite files with >
+setopt MAIL_WARNING         # check mail
+setopt REC_EXACT            # in completion recognize exact matches even when ambigous
+setopt AUTO_LIST            # list all possibiliies in ambigous completion
+unsetopt BG_NICE            # lower priority of bg processes
+unsetopt EXTENDED_GLOB      # treats # ~ and ^  as part of filename patterns
+
+# history {{{
+setopt HIST_IGNORE_DUPS     # ignore duplicates on history expansion
+setopt HIST_REDUCE_BLANKS   # reduce unnecessary blank spaces in history
+setopt HIST_IGNORE_SPACE    # ignore commands if they start with a space
+setopt HIST_IGNORE_DUPS     # ignore commands if they are the same as the previous one
+setopt HIST_NO_STORE        # don't store 'history' and 'fc' commands
+setopt APPEND_HISTORY       # just append instead of overwrite
+setopt INC_APPEND_HISTORY   # append after execution in stead of after killing of shell
+setopt EXTENDED_HISTORY     # puts timestamps in the history
+unsetopt SHARE_HISTORY      # explicitly share history across running sessions
+HISTFILE=$HOME/.cache/zsh/zhistory
+HISTSIZE=1000
+SAVEHIST=1000
+# }}}
+
+# directories {{{
+setopt AUTO_PUSHD           # automatically save where you were
+setopt AUTO_CD              # when command is not found interpret as cd command
+setopt PUSHD_IGNORE_DUPS    # ignore duplicates with pushd
+setopt PUSHD_SILENT         # don't print directory stack when pushd or popd
+setopt PUSHD_MINUS          # swap cd + - options
+setopt PUSHD_TO_HOME        # 'pushd' equals 'pushd $HOME'
+setopt AUTO_PARAM_SLASH     # add slash after directory complete
+setopt GLOB_DOTS            # leading . in filenames are unnecessary 
+unsetopt CDABLE_VARS        # if location for cd command is not there try to put ~/ in front
+# }}}
+# }}}
+
+# PROMPTS {{{
+autoload -Uz vcs_info
+autoload -U colors && colors
+zstyle ':vcs_info:*' stagedstr '%b%F{green}'
+zstyle ':vcs_info:*' unstagedstr '%b%F{yellow}'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' formats '%B%F{black}%u%c[%%b%b%B%F{black}%u%c]%%b%f'
+zstyle ':vcs_info:*' enable git svn
+precmd() {
+    vcs_info
+}
+#
+setopt prompt_subst
+local gc="%(?, ,%F{black}%? %F{red}!%b%f)"
+local jb="%(1j,_, )"
+PS1='%F{yellow}|%F{black}%\[%F{red}%1c%F{black}%\]$ %f%b'
+# PS1='%F{black}%1c%B%F{black} %f%b'
+# PS1='%F{black}%B%1c%b%F{black} > %b'
+
+RPS1='%F{magenta}$VIMODE ${gc}'
+PS2='%B%F{black}%_> %f%b'
+RPS2='%B%F{black} ... %f%b'
+PS3="%F{blue} ?# %b"
+
+function zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/--command--}/(main|viins)/}"
+    RPS1="%F{magenta}$VIMODE ${gc}"
+    zle reset-prompt
+}
+
+function accept_line {
+    VIMODE=''
+    zle doprompt
+    builtin zle .accept-line
+}
+zle -N accept_line
+bindkey -M vicmd "^M" accept_line
+
+zle -N zle-keymap-select
+
+# }}}
+
+# verbose copy and move without correction {{{
+alias mv="nocorrect mv -v"
+alias cp="nocorrect cp -v"
+alias sudo="nocorrect sudo"
+# }}}
+
+# # COMPLETION {{{
+autoload -U compinit && compinit
+autoload -U compinstall
+
+zmodload -i zsh/complist
+setopt hash_list_all            # hash everything before completion
+setopt completealiases          # complete alisases
+setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word    
+setopt complete_in_word         # allow completion from within a word/phrase
+setopt correct                  # spelling correction for commands
+setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+
+## use caching
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path $HOME/.cache/zsh/cache
+
+## use colors
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:processes' command 'ps -axw'
+zstyle ':completion:*:processes-names' command 'ps -awxho command'
+
+## completion Styles
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+## list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+
+## allow one error for every three characters typed in approximate completer
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+
+## insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+
+# completion sections styling
+zstyle ':completion:*:messages' format $'\e[00;31m%d'
+
+
+zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
+
+## formatting and messages
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:messages' format '%F{blue}'
+zstyle ':completion:*:warnings' format '%F{red}No matches for: "%d"'
+zstyle ':completion:*:corrections' format '%F{blue}%d%b'
+zstyle ':completion:*:descriptions' format '%F{yellow}%d%b'
+zstyle ':completion:*' group-name ''
+
+## match uppercase from lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+## offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+## Filename suffixes to ignore during completion (except after rm command)
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*?.swp' '*?.swo' 
+
+## Ignore tex-in-betweeners for vim completion
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.pdf' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.fls' '*?.dpth' '*?.pdf' '*?.EXE' '*?.OBJ' '*?.o' '*?.hi'
+zstyle ':completion:*:*:mupdf:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
+zstyle ':completion:*:*:zathura:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
+
+# Use beginning of line to do history search
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "\e[A" up-line-or-beginning-search
+bindkey "\e[B" down-line-or-beginning-search
+
+# }}}
+
+# UNFOUND COMMAND {{{
+function command_not_found_handler(){echo $fg[red]"Error: Command '$fg[yellow]$1\033[0m$fg[red]' not found."}
+# }}}
+
+# teamocil completion
+compctl -g '~/.teamocil/*(:t:r)' teamocil
+
+# eval "$(gulp --completion=zsh)"
+
+
+# vim: fdm=marker

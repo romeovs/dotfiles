@@ -1,0 +1,7 @@
+# set config directories
+
+export XDG_CONFIG_HOME="$HOME/.conf"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+source "${XDG_CONFIG_HOME}/zsh/environment"
