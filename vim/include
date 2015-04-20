@@ -1,2 +1,3 @@
-alias vim="nvim -u $XDG_CONFIG_HOME/vim/vimrc"
+export EDITOR="nvim -u $XDG_CONFIG_HOME/vim/vimrc"
+alias vim="$EDITOR"
 # vim: ft=zsh
