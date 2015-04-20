@@ -1,0 +1,1 @@
+alias eslint="eslint -c $XDG_CONFIG_HOME/eslint/eslintrc"

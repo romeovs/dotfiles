@@ -1,0 +1,67 @@
+[user]
+  name  = Romeo Van Snick
+  email = romeovs@gmail.com
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+  abbrev = 9
+
+[advice]
+  detachedHead = true
+  statusHints  = false
+  implicitIdentity = true
+
+[format]
+  pretty =%C(yellow)%H%C(black bold)%d%n%C(black bold)author:  %Creset%an <%ce>%n%C(black bold)date:    %Creset%cd%n%C(black bold)subject: %Creset%s%n
+
+[gc]
+  reflogexpireunreachable = never
+  reflogexpire = never
+
+[alias]
+  s = status
+  c = commit
+  graph = log --graph --pretty=format:'%C(yellow)%h %C(black bold)%d %Creset%s' --all
+  unstage = rm --cached
+
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = always
+
+[color "branch"]
+  current = magenta
+  local = magenta bold
+  remote = cyan
+  plain = normal
+
+[color "diff"]
+  plain = normal
+  meta = bold
+  frag = blue
+  old = red
+  new = green
+  commit = yellow
+  whitespace = normal red
+
+[color "decorate"]
+  branch = black bold
+  remoteBranch = black bold
+  tag   = black bold
+  stash = black bold
+  HEAD  = black bold
+
+[color "status"]
+  header  = black bold
+  added   = green
+  changed = yellow
+  branch  = magenta
+  untracked = red
+  nobranch  = red
+
+[push]
+  default = simple
+
