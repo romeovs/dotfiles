@@ -1,0 +1,25 @@
+#!/bin/sh
+
+file="$1"
+output="${file%.yuml}.svg"
+
+# make uri
+tmpfile="/tmp/${RANDOM}.uml"
+
+cat "$file" \
+    | sed "s/\/\/.*$//g" \
+    | sed "s/^[ ]*//g" \
+    | sed "s/\[[ ]*/\[/g" \
+    | sed "s/[ ]*\[/\[/g" \
+    | sed "s/[ ]*\]/\]/g" \
+    | sed "s/\][ ]*/\]/g" \
+    | sed "s/|[ ]*/|/g" \
+    | tr -d "\n\r\t" \
+    | sed "s/,$//g" > $tmpfile
+
+# cat $tmpfile
+
+# needs yuml sudo pip install yuml
+yuml -i $tmpfile -o $output -f svg -t class -s nofunky
+
+rm $tmpfile
