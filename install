@@ -1,18 +1,7 @@
-#!/usr/bin/env sh
-
-# set up config
-export XDG_CONFIG_HOME="$HOME/.conf"
-export XDG_CACHE_HOME="$HOME/.cache"
 
 # install brew
 echo 'installing homebrew...'
 ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
-
-# install homerun things
-sh "$XDG_CONFIG_HOME/homerun/lib/install"
-
-# intialize cache dir
-mkdir "$XDG_CACHE_HOME"
 
 # QUICKLOOK PLUGINS
 # adds colors to quicklook preview
@@ -30,10 +19,8 @@ brew cask install webpquicklook
 # shows image dimension and size in title
 brew cask install qlimagesize
 
-
 # SIMBL
+# needed for MouseTerm: https://bitheap.org/mouseterm/
 brew cask install easysimbl
-
-# MouseTerm: https://bitheap.org/mouseterm/
 
 # vim: ft=zsh
