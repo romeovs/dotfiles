@@ -1,0 +1,45 @@
+ #!/bin/sh
+
+titleset=
+title=""
+
+subtitleset=
+subtitle=""
+
+while getopts ":t:s:h" opt; do
+    case $opt in
+        t)
+            titleset=1
+            title="$OPTARG"
+            ;;
+        s)
+            subtitleset=1
+            subtitle="$OPTARG"
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+        *)
+            echo "Usage: $0 [-t title] [-s subtitle] [text]"
+            exit 1
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+text="$*"
+
+if [ $titleset ] && [ $subtitleset ]; then
+    osascript -e "display notification \"$text\" with title \"$title\" subtitle \"$subtitle\""
+elif [ $titleset ]; then
+    osascript -e "display notification \"$text\" with title \"$title\""
+elif [ $subtitleset ]; then
+    osascript -e "display notification \"$text\" with subtitle \"$subtitle\" title \"notify\""
+else
+    osascript -e "display notification \"$text\" with title \"notify\""
+fi

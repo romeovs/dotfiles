@@ -1,0 +1,2 @@
+#!/bin/sh
+which afplay >/dev/null && afplay /System/Library/Sounds/Sosumi.aiff

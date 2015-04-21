@@ -1,0 +1,5 @@
+#!/usr/local/bin/php
+<?php
+    echo urlencode($argv[1]);
+    echo "\n";
+?>

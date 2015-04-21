@@ -1,0 +1,20 @@
+#!/bin/sh
+
+HOSTFILE="/etc/hosts"
+URL="${1%.dev}.dev"
+
+if [ "$#" -ne 1 ]; then
+    name=$(basename $0)
+    echo "Usage: $name [url]" >&2
+    exit 1
+fi
+
+grep -q "$URL\$" $HOSTFILE
+if [ 1 -eq $? ]; then
+    echo "adding url '\033[33m$URL\033[0m' to '\033[35m$HOSTFILE\033[0m'"
+    echo "127.0.0.1       $URL" | sudo tee -a "$HOSTFILE" > /dev/null
+    echo "::1             $URL" | sudo tee -a "$HOSTFILE" > /dev/null
+    echo 'Done!'
+else
+    echo "url '\033[33m$URL\033[0m' was already in '\033[35m$HOSTFILE\033[0m'"
+fi

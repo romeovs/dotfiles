@@ -1,0 +1,28 @@
+#!/bin/sh
+
+uri=$1
+shift
+query=
+color="--color"
+
+
+while getopts ":nq:" opt "$@"; do
+  case $opt in
+    q)
+      query="$OPTARG"
+      ;;
+
+    n)
+      color=""
+      ;;
+    :)
+      echo "option -q requires argument" >&2
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+echo "$@"
+curl -s -H "Accept: application/json" -H "Content-Type: application/json" "$@" http://localhost:$PORT$uri | jq "$query" | underscore print $color
+# curl -s -H "Accept: application/json" -H "Content-Type: application/json" "$@" http://localhost:3000$uri | underscore print $color
