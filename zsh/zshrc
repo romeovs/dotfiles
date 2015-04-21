@@ -1,10 +1,7 @@
-# if [ -z "$TMUX" ]; then
-    # exec tmux;
-# fi
-
 # needs to be done here instead of zshenv to prevent /etc/profile from
 # overwriting it
-export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
+# export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
+export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
 
 export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
 export LS_COLORS="di=00;31:ex=00;37:mi=00;41;30:tw=00;33"
@@ -122,7 +119,7 @@ alias cp="nocorrect cp -v"
 alias sudo="nocorrect sudo"
 # }}}
 
-# # COMPLETION {{{
+# COMPLETION {{{
 autoload -U compinit && compinit
 autoload -U compinstall
 
@@ -200,11 +197,5 @@ bindkey "\e[B" down-line-or-beginning-search
 # UNFOUND COMMAND {{{
 function command_not_found_handler(){echo $fg[red]"Error: Command '$fg[yellow]$1\033[0m$fg[red]' not found."}
 # }}}
-
-# teamocil completion
-compctl -g '~/.teamocil/*(:t:r)' teamocil
-
-# eval "$(gulp --completion=zsh)"
-
 
 # vim: fdm=marker
