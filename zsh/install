@@ -1,3 +1,6 @@
 brew install zsh ffind
-cp ./zshenv "$HOME"/.zshenv
+
+echo 'linking zshenv...'
+ln -s "${XDG_CONFIG_HOME}/zsh/zshenv" "$HOME/.zshenv"
+
 # vim: ft=zsh
