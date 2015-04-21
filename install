@@ -23,4 +23,7 @@ brew cask install qlimagesize
 # needed for MouseTerm: https://bitheap.org/mouseterm/
 brew cask install easysimbl
 
+# NODE
+brew install node
+
 # vim: ft=zsh
