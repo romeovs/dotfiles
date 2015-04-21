@@ -12,8 +12,7 @@ function help() {
 
 Tasks:
   homerun install      # run install scripts
-  homerun cd TOOL      # go into dir of TOOL
-  homerun list         # list tools
+  homerun cd TOOL      # go into TOOL dir of \$XDG_CONFIG_HOME
 "
 }
 
@@ -22,10 +21,14 @@ function error() {
   exit 1
 }
 
+function task() {
+  sh "${homerun}/lib/$1";
+}
+
 
 case "$task" in
 'install')
-  sh "${homerun}/lib/install";
+  task "install";
   ;;
 
 'help')
