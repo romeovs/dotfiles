@@ -2,9 +2,17 @@
 
 for dir in "$XDG_CONFIG_HOME"/*; do
   if [ -d "$dir" ]; then
+
+    # source include file
     include="$dir/include"
     if [ -f "$include" ]; then
       source $include
+    fi
+
+    # add path
+    bin="$dir/bin";
+    if [ -d "$bin" ]; then
+      export PATH="$PATH:$bin"
     fi
   fi
 done
