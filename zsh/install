@@ -3,4 +3,7 @@ brew install zsh ffind
 echo 'linking zshenv...'
 ln -s "${XDG_CONFIG_HOME}/zsh/zshenv" "$HOME/.zshenv"
 
+ln -s "${XDG_CONFIG_HOME}/zsh/profile" "${XDG_CONFIG_HOME}/zsh/.zprofile"
+ln -s "${XDG_CONFIG_HOME}/zsh/zshrc" "${XDG_CONFIG_HOME}/zsh/.zshrc"
+
 # vim: ft=zsh
