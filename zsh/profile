@@ -1,6 +1,6 @@
 # /etc/profile
 
-source ${XDG_CONFIG_HOME}/homerun/lib/source
+source ${XDG_CONFIG_HOME}/homerun/lib/initialize
 source ${XDG_CONFIG_HOME}/zsh/aliases
 
 export HOMEBREW_NO_EMOJI=1
