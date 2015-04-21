@@ -1,0 +1,8 @@
+
+# link launch agent
+ln -s "${XDG_CONFIG_HOME}/locationupdater/locationupdater.plist" "${HOME}/Library/LaunchAgents"
+
+# load it
+launchctl load -w "${XDG_CONFIG_HOME}/locationupdater/locationupdater.plist"
+
+# vim: ft=zsh

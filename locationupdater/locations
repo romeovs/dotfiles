@@ -1,0 +1,7 @@
+# location updater config file
+# example:
+# 'SSID'        Profile
+
+'VUBnet'        VUB
+'DLINK ds'      VUB
+*               Automatic
