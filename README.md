@@ -3,4 +3,4 @@
 These are my dotfiles.
 
 I use [homerun](https://github.com/romeovs/homerun) to keep everything under
-`~/.config` instead of placeing it in `~` directly.
+`~/.config` instead of placing it in `~` directly.
