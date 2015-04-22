@@ -1,5 +1,6 @@
 
 alias add="git add"
+alias s="git status"
 
 function commit() {
   local clobber=true
