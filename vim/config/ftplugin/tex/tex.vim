@@ -1,16 +1,4 @@
-let b:current_syntax = ''
-unlet b:current_syntax
-runtime! syntax/tex.vim
-
-let b:current_syntax = ''
-unlet b:current_syntax
-syntax include @TeX syntax/tex.vim
-
-hi link Snip SpecialComment
-let b:current_syntax = 'rtex'
-
 " setlocal nocursorline
-NoMatchParen
 setl conceallevel=0
 
 " COMPILE {{{
