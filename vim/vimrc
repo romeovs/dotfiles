@@ -2,19 +2,21 @@
 " author: Romeo Van Snick
 " e-mail: romeovs@gmail.com
 
-
 " disable compatible mode
 set nocompatible
 
+let $VIM_HOME = expand("$XDG_CONFIG_HOME/vim/config")
+
 " set correct vimdir
-set runtimepath+=$XDG_CONFIG_HOME/vim/config/
+" set runtimepath+=$XDG_CONFIG_HOME/vim/config/
+set runtimepath+=$VIM_HOME
 
 " NEOBUNDLE <<
 if has('vim_starting')
-  set runtimepath+=$XDG_CONFIG_HOME/vim/config/bundle/neobundle.vim/
+  set runtimepath+=$VIM_HOME/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('$XDG_CONFIG_HOME/vim/config/bundle/'))
+call neobundle#begin(expand('$VIM_HOME/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim', {
@@ -289,7 +291,7 @@ let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 NeoBundle 'aperezdc/vim-template' " templates
 let g:templates_name_prefix = 'default'
 let g:templates_global_name_prefix = 'default'
-let g:templates_directory = '/Users/romeovs/.nvim/templates'
+let g:templates_directory = "$VIM_HOME/templates"
 " >>
 
 call neobundle#end()
