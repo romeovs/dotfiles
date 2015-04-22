@@ -20,9 +20,9 @@
 
 [alias]
   s = status
-  c = commit
+  c = "!f() { git commit -m \"$*\"; }; f"
   graph = log --graph --pretty=format:'%C(yellow)%h %C(black bold)%d %Creset%s' --all
-  unstage = rm --cached
+  unstage = reset HEAD --
 
 [color]
   branch = auto
