@@ -301,14 +301,15 @@ function! MySpellLang()
   let g:myLang = g:myLang + 1
   if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
 
-  let l:lang = g:myLangList[g:myLang]
+  let l:lang   = g:myLangList[g:myLang]
+  let l:simple = split(l:lang, '_')[0]
 
   if l:lang == "nospell"
     set nospell
     echo "spell off"
   else
     exec "setlocal spell spelllang=" . l:lang
-    exec "setlocal spellfile=" . expand("$VIM_HOME/spell/") . l:lang . "." . &encoding . ".add"
+    exec "setlocal spellfile=" . expand("$VIM_HOME/spell/") . l:simple . "." . &encoding . ".add"
     echo "spell language" l:lang
   endif
 
