@@ -300,17 +300,23 @@ function! MySpellLang()
   "loop through languages
   let g:myLang = g:myLang + 1
   if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
-  if g:myLang == 0 | set nospell | endif
-  if g:myLang == 1 | setlocal spell spelllang=de_de | endif
-  if g:myLang == 2 | setlocal spell spelllang=en_us | endif
-  echo "language:" g:myLangList[g:myLang]
+
+  let l:lang = g:myLangList[g:myLang]
+
+  if l:lang == "nospell"
+    set nospell
+    echo "spell off"
+  else
+    exec "setlocal spell spelllang=" . l:lang
+    exec "setlocal spellfile=" . expand("$VIM_HOME/spell/") . l:lang . "." . &encoding . ".add"
+    echo "spell language" l:lang
+  endif
+
 endf
 
 map <F7> :call MySpellLang()<CR>
 imap <F7> <C-o>:call MySpellLang()<CR
 " >>
-
-
 
 call neobundle#end()
 
