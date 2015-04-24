@@ -1,4 +1,5 @@
 brew install editorconfig
-ln -s "${XDG_CONFIG_HOME}/editor.conf" "${HOME}/.editorconfig"
+# ln -s "${XDG_CONFIG_HOME}/editorconfig/editor.conf" "${HOME}/.editorconfig"
+ln -sf "${PWD}/editor.conf" "${HOME}/.editorconfig"
 
 # vim: ft=zsh
