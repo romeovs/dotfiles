@@ -1,7 +1,7 @@
 
 mkdir -p "$HOME/.ssh"
 
-ln -sf "$XDG_CONFIG_HOME/ssh/config" "$HOME/.ssh/"
-chmod 600 "$XDG_CONFIG_HOME/ssh/config"
+ln -sf "${PWD}/config" "$HOME/.ssh/"
+chmod 600 "${PWD}/config"
 
 # vim: ft=zsh
