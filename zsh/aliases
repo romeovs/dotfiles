@@ -33,7 +33,7 @@ alias gcc='gcc -std=c++11'
 
 # haskell highlighting
 hhl(){
-    $@ | ~/.bin/hhl.sh
+    $@ | hhl.sh
 }
 alias ghc="hhl ghc"
 alias hoogle="hhl hoogle"
