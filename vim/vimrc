@@ -65,7 +65,7 @@ NeoBundle 'nickng/vim-scribble'               " scribble
 NeoBundle 'alunny/pegjs-vim'                  " pegjs
 NeoBundle 'jsx/jsx'                           " jsx
 NeoBundle 'pangloss/vim-javascript'           " js
-
+NeoBundle 'gkz/vim-ls'                        " livescript
 " >>
 
 " FIX TIMEOUTS <<
