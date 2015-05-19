@@ -1,7 +1,11 @@
 
 # install brew
-echo 'installing homebrew...'
-ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
+if type brew &> /dev/null; then
+  echo 'brew already installed'
+else
+  echo 'installing homebrew...'
+  ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
+fi
 
 # QUICKLOOK PLUGINS
 # adds colors to quicklook preview
@@ -25,5 +29,8 @@ brew cask install easysimbl
 
 # NODE
 brew install node
+
+# install xquartz
+brew install Caskroom/cask/xquartz
 
 # vim: ft=zsh
