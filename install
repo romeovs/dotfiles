@@ -31,6 +31,13 @@ brew cask install easysimbl
 brew install node
 
 # install xquartz
-brew install Caskroom/cask/xquartz
+brew cask install xquartz
+
+# install gitter
+brew cask install gitter
+
+# install fontforge
+brew install fontforge --with-x11
+
 
 # vim: ft=zsh
