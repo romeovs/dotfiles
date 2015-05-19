@@ -20,6 +20,9 @@ alias mkdir="mkdir -p -v"
 alias e="vim"
 alias grep="grep --color=auto"
 
+# tex live
+alias tlmgr="sudo tlmgr"
+
 # racket
 alias csi="csi -q -include-path '/Users/romeovs/Documents/vub/algoritmen en datastructuren/wpo/code'"
 alias rkt="rlwrap /Applications/Racket\ v6.1.1/bin/racket -S /Users/romeovs/Documents/vub/Programmeerproject\ II/src"
