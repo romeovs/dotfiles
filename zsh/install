@@ -1,4 +1,4 @@
-brew install zsh ffind
+brew install zsh ffind coreutils
 
 echo 'linking zshenv...'
 ln -sf "${PWD}/zshenv" "$HOME/.zshenv"
