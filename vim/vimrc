@@ -143,15 +143,15 @@ set equalalways         " make splits equal
 " >>
 
 " SWAP <<
-set undodir=expand('$XDG_CACHE_HOME/nvim/undo')
+set undodir=$XDG_CACHE_HOME/nvim/undo
 set undofile
 
 set noswapfile
-set directory=expand('$XDG_CACHE_HOME/nvim/swap')
+set directory=$XDG_CACHE_HOME/nvim/swap
 
 set backup
 set nowritebackup
-set backupdir=expand('$XDG_CACHE_HOME/nvim/backup')
+set backupdir=$XDG_CACHE_HOME/nvim/backup
 
 let g:netrw_home=expand('$XDG_CACHE_HOME/nvim')
 set viminfo='100,n$XDG_CACHE_HOME/nvim/viminfo  " viminfo location
