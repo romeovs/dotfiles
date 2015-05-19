@@ -143,18 +143,18 @@ set equalalways         " make splits equal
 " >>
 
 " SWAP <<
-set undodir=~/.cache/nvim/undo
+set undodir=expand('$XDG_CACHE_HOME/nvim/undo')
 set undofile
 
 set noswapfile
-set directory=~/.cache/nvim/swap
+set directory=expand('$XDG_CACHE_HOME/nvim/swap')
 
 set backup
 set nowritebackup
-set backupdir=~/.cache/nvim/backup
+set backupdir=expand('$XDG_CACHE_HOME/nvim/backup')
 
-let g:netrw_home="~/.cache/nvim/"
-set viminfo='100,n$HOME/.cache/nvim/viminfo  " viminfo location
+let g:netrw_home=expand('$XDG_CACHE_HOME/nvim')
+set viminfo='100,n$XDG_CACHE_HOME/nvim/viminfo  " viminfo location
 " >>
 
 " FOLDING <<

@@ -4,12 +4,12 @@
 brew tap neovim/neovim
 brew install --HEAD neovim
 
-vimdir="${PWD}/config"
+vimdir="${PWD}/vimfiles"
 
 mkdir -p  "$vimdir/bundle"
-git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+git clone https://github.com/Shougo/neobundle.vim "$vimdir/bundle/neobundle.vim"
 
 # set up cache folders
-mkdir -p ./cache/nvim/{backup,swap,undo}
+mkdir -p $XDG_CACHE_HOME/nvim/{backup,swap,undo}
 
 # vim: ft=zsh
