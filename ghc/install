@@ -1,8 +1,7 @@
 
-# install ghc
-brew install ghc
+# install stuff
+brew install ghc cabal-install
 
-# install cabal
-brew install cabal
+# update cabal
+cabal update
 
-# todo: install base, ...
