@@ -192,7 +192,7 @@ nnoremap Q  :q<cr>
 nnoremap q: :q<cr>
 
 " tabs
-nmap t :tabnew 
+nmap t :tabnew<space>
 nmap <silent> <tab>   :tabnext<cr>
 nmap <silent> <S-tab> :tabprev<cr>
 
