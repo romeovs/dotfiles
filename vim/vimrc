@@ -29,6 +29,10 @@ NeoBundle 'tpope/vim-surround'    " mappings to work with ' ( etc
 NeoBundle 'tpope/vim-repeat'      " repeat more stuff
 NeoBundle 'edsono/vim-matchit'    " better matching with %
 NeoBundle 'godlygeek/tabular'     " table alignment
+NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-line'
+NeoBundle 'kana/vim-textobj-entire'
 " >>
 
 " FILETYPE PLUGINS <<
@@ -71,7 +75,7 @@ NeoBundle 'gkz/vim-ls'                        " livescript
 " FIX TIMEOUTS <<
 set timeout
 set timeoutlen=750
-set timeoutlen=250
+set timeoutlen=500
 " >>
 
 " COLORS <<
@@ -97,7 +101,7 @@ set nocindent     " no strict indentation
 " listchars <<
 " set listchars to only show tabs and trailing whitespace
 exec "set listchars=trail:\uB7,nbsp:_"
-set listchars+=tab:»\ 
+set listchars+=tab:»\
 set list
 " >>
 
@@ -176,20 +180,27 @@ set foldtext=FoldText()
 " >>
 
 " MAP KEYS <<
+let mapleader = "\<space>"
 
 " escape with jkl
 imap jkl <esc>
 
 " toggle folds with space
-nnoremap <space> za
+nnoremap <Leader><Leader> za
+" nnoremap <space> <nop>
 
 " better save
-noremap § :write<cr>
-noremap - :write<cr>
+nnoremap <Leader>w :w<cr>
 
 " better quit
 nnoremap Q  :q<cr>
 nnoremap q: :q<cr>
+
+" region expansion
+vmap K <Plug>(expand_region_expand)
+vmap J <Plug>(expand_region_shrink)
+nnoremap J <NOP>
+nnoremap K v
 
 " tabs
 nmap t :tabnew<space>
@@ -202,6 +213,15 @@ cno <C-e> <End>
 
 inoremap <C-a> <NOP>
 inoremap <C-e> <NOP>
+
+" paste / copy from system
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 
 " bubble lines
 NeoBundle 'tpope/vim-unimpaired'  " bracket mappings
@@ -221,9 +241,9 @@ vnoremap <right> >gv
 vnoremap < <gv
 vnoremap > >gv
 
-" paste mode
-nnoremap <silent> yp :set paste<cr>i
-au InsertLeave * set nopaste
+" terminal mappings
+tnoremap <esc> <C-\><C-n>
+tnoremap <C-w> <C-\><C-n>
 
 " >>
 
@@ -318,6 +338,21 @@ endf
 map <F7> :call MySpellLang()<CR>
 imap <F7> <C-o>:call MySpellLang()<CR
 " >>
+
+" REGION
+let g:expand_region_text_objects = {
+\ 'iw'  :0,
+\ 'iW'  :0,
+\ 'i"'  :0,
+\ 'i''' :0,
+\ 'i)'  :1,
+\ 'i]'  :1,
+\ 'i}'  :1,
+\ 'is'  :0,
+\ 'ip'  :0,
+\ 'ie'  :0,
+\ }
+
 
 call neobundle#end()
 
