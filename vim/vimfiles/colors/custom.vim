@@ -18,7 +18,7 @@ let colors_name = "custom"
 
 hi Cursor           ctermfg=none    ctermbg=none
 hi Normal           ctermfg=none    ctermbg=none    cterm=none
-hi NonText          ctermfg=black   ctermbg=16      cterm=bold
+hi NonText          ctermfg=black   ctermbg=16      cterm=none
 
 hi CursorLine       ctermbg=16      cterm=none      ctermfg=none
 hi CursorColumn     ctermbg=234     cterm=none
@@ -44,12 +44,12 @@ hi Search           ctermfg=none ctermbg=237
 hi Tooltip          cterm=none
 
 " Columns
-hi LineNr           ctermfg=black   ctermbg=16      cterm=bold
+hi LineNr           ctermfg=black   ctermbg=16      cterm=none
 hi SignColumn       ctermfg=94    ctermbg=16
 hi FoldColumn       ctermfg=94    ctermbg=16      cterm=bold
 
 " Syntax highlighting
-hi Comment          ctermfg=black   ctermbg=none    cterm=bold
+hi Comment          ctermfg=black   ctermbg=none    cterm=italic
 hi Todo             ctermfg=yellow  ctermbg=none    cterm=inverse
 hi Boolean          ctermfg=green   cterm=bold
 hi String           ctermfg=green   cterm=none
@@ -80,6 +80,7 @@ hi MoreMsg          ctermfg=yellow  ctermbg=black
 hi ModeMsg          ctermfg=green   ctermbg=black
 hi Question         ctermfg=green   ctermbg=black
 
+hi Include          ctermfg=95      ctermbg=none
 
 hi bb1 ctermbg=234
 hi bb2 ctermbg=235
@@ -94,13 +95,13 @@ hi bb8 ctermbg=242
 " :let id3 = matchadd('bb4', '\%4l\%6c\_.*\%5l\%21c')
 " :let id4 = matchadd('bb5', '\%5l\%8c\_.*\%5l\%20c')
 " :let id5 = matchadd('bb6', '\%5l\%15c\_.*\%5l\%20c')
-" 
+"
 " :call matchdelete(id1)
 " :call matchdelete(id2)
 " :call matchdelete(id3)
 " :call matchdelete(id4)
 " :call matchdelete(id5)
-" 
+"
 
 
 
