@@ -40,4 +40,7 @@ brew cask install gitter
 brew install fontforge --with-x11
 
 
+# install transmission
+brew cask install transmission
+
 # vim: ft=zsh
