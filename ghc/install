@@ -4,4 +4,4 @@ brew install ghc cabal-install
 
 # update cabal
 cabal update
-
+cabal install hoogle pointfree pointfull
