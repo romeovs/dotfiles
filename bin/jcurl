@@ -1,28 +1,30 @@
 #!/bin/sh
 
-uri=$1
-shift
-query=
-color="--color"
+method="GET"
+headers=""
+args=""
 
-
-while getopts ":nq:" opt "$@"; do
-  case $opt in
-    q)
-      query="$OPTARG"
-      ;;
-
-    n)
-      color=""
-      ;;
-    :)
-      echo "option -q requires argument" >&2
-      exit 1
-      ;;
-  esac
+for arg in "-H" "Content-Type: application/json" "-H" "Accept: application/json" "$@"; do
+  if [ "$nextheader" = "true" ]; then
+    nextheader=false
+    headers="$headers$arg\n"
+    args="$args -H \"$arg\""
+  elif [ "$nextmethod" = "true" ]; then
+    nextmethod=false
+    method="$arg"
+    args="$args -X $arg"
+  else
+    if [ "$arg" == "-H" ]; then
+      nextheader=true
+    elif [ "$arg" == "-X" ]; then
+      nextmethod=true
+    else
+      uri="$arg"
+    fi
+  fi
 done
-shift $((OPTIND - 1))
 
-echo "$@"
-curl -s -H "Accept: application/json" -H "Content-Type: application/json" "$@" http://localhost:$PORT$uri | jq "$query" | underscore print $color
-# curl -s -H "Accept: application/json" -H "Content-Type: application/json" "$@" http://localhost:3000$uri | underscore print $color
+echo $method $uri HTTP/1.1
+echo $headers
+eval exec curl -s $args http://localhost:$PORT$uri | underscore print --color
+
