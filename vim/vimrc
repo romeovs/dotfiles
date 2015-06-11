@@ -191,6 +191,7 @@ nnoremap <Leader><Leader> za
 
 " better save
 nnoremap <Leader>w :w<cr>
+nnoremap - :w<cr>
 
 " better quit
 nnoremap Q  :q<cr>
@@ -222,6 +223,8 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+nnoremap <cr> G
+nnoremap <bs> gg
 
 " bubble lines
 NeoBundle 'tpope/vim-unimpaired'  " bracket mappings
