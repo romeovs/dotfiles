@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# -lt 1 ]; then
+  echo "I need an argument!"
+  exit 1;
+fi
+
+for i in "$@"; do
+  in="${i}"
+  out="${in%.*}.m4a"
+
+  echo "converting to ‘${out}’"
+  ffmpeg -loglevel warning -i "${in}" -vn -acodec alac -map_metadata 0 -y "${out}"
+done
