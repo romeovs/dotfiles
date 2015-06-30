@@ -70,6 +70,7 @@ NeoBundle 'alunny/pegjs-vim'                  " pegjs
 NeoBundle 'jsx/jsx'                           " jsx
 NeoBundle 'pangloss/vim-javascript'           " js
 NeoBundle 'gkz/vim-ls'                        " livescript
+NeoBundle 'nono/vim-handlebars'               " handlebars
 " >>
 
 " FIX TIMEOUTS <<
