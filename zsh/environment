@@ -21,4 +21,6 @@ export GNUPLOT=${HOME}/.config/
 # homebrew
 export HOMEBREW_NO_EMOJI=1
 
+source "${XDG_CONFIG_HOME}/zsh/private"
+
 # vim: ft=zsh
