@@ -33,6 +33,7 @@ NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-entire'
+
 " >>
 
 " FILETYPE PLUGINS <<
@@ -53,7 +54,7 @@ NeoBundle 'eagletmt/neco-ghc'                 " Haskell complete
 NeoBundle 'vim-scripts/applescript.vim'       " applescript
 NeoBundle 'othree/html5.vim'                  " html5
 NeoBundle 'mustache/vim-mustache-handlebars'  " mustache / handlebars
-NeoBundle 'wavded/vim-stylus'                 " stylus
+NeoBundle 'romeovs/vim-stylus'                 " stylus
 NeoBundle 'evanmiller/nginx-vim-syntax'       " nginx
 NeoBundle 'tpope/vim-markdown'                " markdown
 NeoBundle 'vim-scripts/octave.vim'            " octave
@@ -68,9 +69,8 @@ NeoBundle 'wlangstroth/vim-racket'            " racket
 NeoBundle 'nickng/vim-scribble'               " scribble
 NeoBundle 'alunny/pegjs-vim'                  " pegjs
 NeoBundle 'jsx/jsx'                           " jsx
-NeoBundle 'pangloss/vim-javascript'           " js
+NeoBundle 'romeovs/vim-javascript'            " jsx
 NeoBundle 'gkz/vim-ls'                        " livescript
-NeoBundle 'nono/vim-handlebars'               " handlebars
 " >>
 
 " FIX TIMEOUTS <<
@@ -357,7 +357,14 @@ let g:expand_region_text_objects = {
 \ 'ie'  :0,
 \ }
 
+" load mustache
+au BufNewFile,BufRead,BufNew *.hbs set ft=mustache
 
 call neobundle#end()
+
+
+
+
+
 
 " vim: fdm=marker foldmarker=<<,>>
