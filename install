@@ -28,7 +28,7 @@ brew cask install qlimagesize
 brew cask install easysimbl
 
 # NODE
-brew install node
+brew install node flow
 
 # install xquartz
 brew cask install xquartz
@@ -43,4 +43,6 @@ brew install fontforge --with-x11
 # install transmission
 brew cask install transmission
 
+# we need ffmpeg
+brew install ffmpeg
 # vim: ft=zsh
