@@ -1,1 +1,1 @@
-au BufRead,BufNewFile,BufNew *.styl setl ft=stylus
+au BufRead,BufNewFile *.styl setf stylus
