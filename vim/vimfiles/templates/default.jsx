@@ -1,11 +1,9 @@
 import React from 'react';
 
-const %CAMELCLASS% = React.createClass({
+export default class %CAMELCLASS% extends React.Component {
   render() {
     return (
       <div />
     );
   }
-});
-
-export default %CAMELCLASS%;
+}
