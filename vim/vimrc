@@ -182,7 +182,6 @@ set foldtext=FoldText()
 
 " MAP KEYS <<
 let mapleader = "\<space>"
-
 " escape with jkl
 imap jkl <esc>
 
@@ -208,6 +207,9 @@ nnoremap K v
 nmap t :tabnew<space>
 nmap <silent> <tab>   :tabnext<cr>
 nmap <silent> <S-tab> :tabprev<cr>
+
+nmap <silent> <M-tab> :wincmd w<cr>
+
 
 " commandline begin and end
 cno <C-a> <Home>
@@ -361,6 +363,7 @@ let g:expand_region_text_objects = {
 au BufNewFile,BufRead,BufNew *.hbs set ft=mustache
 
 call neobundle#end()
+
 
 
 
