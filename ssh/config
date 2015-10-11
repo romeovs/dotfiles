@@ -16,9 +16,4 @@ Host nuc
     Port 6103
     User romeovs
 
-Host guest
-    Hostname www.romeovansnick.be
-    Port 6103
-    User guest
-
 # vim: ft=sshconfig
