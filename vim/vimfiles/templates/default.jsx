@@ -1,9 +1,13 @@
-import React from 'react';
+import React    from 'react';
+import autobind from 'autobind-decorator';
 
-export default class %CAMELCLASS% extends React.Component {
+@autobind
+class %REACT_COMPONENT% extends React.Component {
   render() {
     return (
       <div />
     );
   }
 }
+
+export default %REACT_COMPONENT%;
