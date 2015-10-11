@@ -5,7 +5,7 @@ export LC_ALL=en_US.UTF-8
 
 # set paths
 export GNUTERM=X11
-export HOMEBREW_PREFIX=`brew --prefix`
+export HOMEBREW_PREFIX=`/usr/local/bin/brew --prefix`
 export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # set default programs
