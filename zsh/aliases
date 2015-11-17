@@ -47,7 +47,7 @@ alias upf="hhl pointful"
 alias e="$EDITOR"
 
 # node
-alias babel-node="babel-node --harmony --stage 0 --blacklist 'spec.functionName'"
+alias babel-node="babel-node --harmony" # --stage 0 --blacklist 'spec.functionName'"
 
 # open a file / folder
 # defaults to opening current dir
