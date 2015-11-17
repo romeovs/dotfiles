@@ -7,6 +7,9 @@ set nocompatible
 
 let $VIM_HOME = expand("$XDG_CONFIG_HOME/vim/vimfiles")
 
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " set correct vimdir
 set runtimepath+=$VIM_HOME
 
@@ -34,6 +37,12 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-entire'
 
+" snippets
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'garbas/vim-snipmate'
+" NeoBundle 'honza/vim-snippets'
+
 " >>
 
 " FILETYPE PLUGINS <<
@@ -49,6 +58,7 @@ NeoBundleLazy 'rstacruz/sparkup', {
 \   'filetypes': ['html', 'html5', 'php']
 \ }}
 
+NeoBundle 'vim-scripts/scribble.vim'          " scribble
 NeoBundle 'niklasl/vim-rdf'                   " RDF, turtle, ...
 NeoBundle 'eagletmt/neco-ghc'                 " Haskell complete
 NeoBundle 'vim-scripts/applescript.vim'       " applescript
@@ -101,8 +111,7 @@ set nocindent     " no strict indentation
 
 " listchars <<
 " set listchars to only show tabs and trailing whitespace
-exec "set listchars=trail:\uB7,nbsp:_"
-set listchars+=tab:»\
+exec "set listchars=trail:\uB7,nbsp:_,tab:\uBB\uBB"
 set list
 " >>
 
