@@ -66,7 +66,7 @@ setopt PUSHD_SILENT         # don't print directory stack when pushd or popd
 setopt PUSHD_MINUS          # swap cd + - options
 setopt PUSHD_TO_HOME        # 'pushd' equals 'pushd $HOME'
 setopt AUTO_PARAM_SLASH     # add slash after directory complete
-setopt GLOB_DOTS            # leading . in filenames are unnecessary 
+setopt GLOB_DOTS            # leading . in filenames are unnecessary
 unsetopt CDABLE_VARS        # if location for cd command is not there try to put ~/ in front
 # }}}
 # }}}
@@ -126,7 +126,7 @@ autoload -U compinstall
 zmodload -i zsh/complist
 setopt hash_list_all            # hash everything before completion
 setopt completealiases          # complete alisases
-setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word    
+setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
 setopt complete_in_word         # allow completion from within a word/phrase
 setopt correct                  # spelling correction for commands
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
@@ -177,7 +177,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 ## Filename suffixes to ignore during completion (except after rm command)
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*?.swp' '*?.swo' 
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*?.swp' '*?.swo'
 
 ## Ignore tex-in-betweeners for vim completion
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.pdf' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.fls' '*?.dpth' '*?.pdf' '*?.EXE' '*?.OBJ' '*?.o' '*?.hi'
@@ -198,4 +198,62 @@ bindkey "\e[B" down-line-or-beginning-search
 function command_not_found_handler(){echo $fg[red]"Error: Command '$fg[yellow]$1\033[0m$fg[red]' not found."}
 # }}}
 
+###-begin-npm-completion-###
+#
+# npm command completion script
+#
+# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
+# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
+#
+
+if type complete &>/dev/null; then
+  _npm_completion () {
+    local words cword
+    if type _get_comp_words_by_ref &>/dev/null; then
+      _get_comp_words_by_ref -n = -n @ -w words -i cword
+    else
+      cword="$COMP_CWORD"
+      words=("${COMP_WORDS[@]}")
+    fi
+
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           npm completion -- "${words[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -o default -F _npm_completion npm
+elif type compdef &>/dev/null; then
+  _npm_completion() {
+    local si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+elif type compctl &>/dev/null; then
+  _npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
+fi
+###-end-npm-completion-###
+#
 # vim: fdm=marker
