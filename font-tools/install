@@ -1,0 +1,4 @@
+# install fontforge
+brew install fontforge --with-x11
+
+# vim: ft=zsh
