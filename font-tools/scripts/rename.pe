@@ -1,0 +1,5 @@
+#!/usr/local/bin/fontforge
+
+Open($2)
+SetFontNames($1, $1, $1, $3 + " " + $4, "-", "-")
+Generate($2)

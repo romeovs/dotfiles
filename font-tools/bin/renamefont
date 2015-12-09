@@ -1,0 +1,36 @@
+#!/bin/sh
+
+function lowercase {
+  echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+function uppercase {
+  echo "$1" | tr '[:lower:]' '[:upper:]'
+}
+
+function firstcase {
+  f=`uppercase "${1:0:1}"`
+  r=`lowercase "${1:1}"`
+  echo "$f$r"
+}
+
+file="$1"
+ext="${file#*.}"
+name="$2"
+
+weight=`firstcase "$3"`
+style=`firstcase "$4"`
+
+dest=`lowercase "${name} - ${weight} ${style}.${ext}"`
+
+echo "Renaming font:"
+echo "    name:  $name"
+echo "  weight:  $weight"
+echo "   style:  $style"
+echo "    file:  $dest"
+
+cp "$file" "$dest"
+
+base="${XDG_CONFIG_HOME}/font-tools/scripts"
+
+"$base/rename.pe" "$name" "$dest" "$weight" "$style" 2>&1 | "$base/ffilter.sh"

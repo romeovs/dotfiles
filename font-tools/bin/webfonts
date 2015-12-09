@@ -1,4 +1,8 @@
 #!/bin/sh
 
-mkdir ${1%.*}
-webfonts.pe $1
+echo "generating webfonts:"
+
+base="${XDG_CONFIG_HOME}/font-tools/scripts"
+
+mkdir -pv "${1%.*}"
+"$base/webfonts.pe" "$1" 2>&1 | "$base/ffilter.sh"
