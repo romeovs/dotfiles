@@ -32,9 +32,9 @@ syn match MHArrowH  /-\@<=>/   contained containedin=MHArrow cchar=  conceal
 
 
 " <-
-syn match HMArrow   /<\ze-/    contains=HMArrowM,HMArrowH
-syn match HMArrowH  /</        contained containedin=HMArrow conceal cchar=⟵
-syn match MHArrowH  /<\@<=-/   contained containedin=MHArrow cchar=  conceal
+syn match MHArrow   /<-/      contains=MHArrowH,MHArrowM
+syn match MHArrowH  /</       contained containedin=MHArrow conceal cchar=⟵
+syn match MHArrowM  /<\@<=-/  contained containedin=MHArrow cchar=  conceal
 
 " => ⇒
 syn match DMHArrow   /=>/       contains=DMHArrowM,DMHArrowH
