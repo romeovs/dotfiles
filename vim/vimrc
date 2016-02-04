@@ -36,11 +36,13 @@ NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-entire'
+NeoBundle 'reedes/vim-textobj-quote'
 
 " snippets
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'reedes/vim-wordy'
 " NeoBundle 'honza/vim-snippets'
 
 " >>
@@ -66,7 +68,9 @@ NeoBundle 'othree/html5.vim'                  " html5
 NeoBundle 'mustache/vim-mustache-handlebars'  " mustache / handlebars
 NeoBundle 'romeovs/vim-stylus'                 " stylus
 NeoBundle 'evanmiller/nginx-vim-syntax'       " nginx
-NeoBundle 'tpope/vim-markdown'                " markdown
+" NeoBundle 'tpope/vim-markdown'                " markdown
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'vim-scripts/octave.vim'            " octave
 NeoBundle 'killphi/vim-ebnf'                  " ebnf
 NeoBundle 'guns/vim-clojure-static'           " clojure
@@ -79,7 +83,9 @@ NeoBundle 'wlangstroth/vim-racket'            " racket
 NeoBundle 'nickng/vim-scribble'               " scribble
 NeoBundle 'alunny/pegjs-vim'                  " pegjs
 NeoBundle 'jsx/jsx'                           " jsx
-NeoBundle 'romeovs/vim-javascript'            " jsx
+" NeoBundle 'romeovs/vim-javascript'            " jsx
+" NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'gkz/vim-ls'                        " livescript
 " >>
 
@@ -372,6 +378,11 @@ map <F7> :call MySpellLang()<CR>
 imap <F7> <C-o>:call MySpellLang()<CR
 " >>
 
+" MARKDOWN <<
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_folding_disabled=1
+" >>
+
 " REGION
 let g:expand_region_text_objects = {
 \ 'iw'  :0,
@@ -393,8 +404,12 @@ call neobundle#end()
 
 
 
+" quotes
+function! Quotes ()
+  call textobj#quote#init()
+endfunction
 
-
+let g:textobj#quote#matchit = 1
 
 
 " vim: fdm=marker foldmarker=<<,>>
