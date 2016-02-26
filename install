@@ -7,6 +7,7 @@ else
   ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
 fi
 
+
 # QUICKLOOK PLUGINS
 # adds colors to quicklook preview
 brew cask install qlcolorcode
@@ -41,5 +42,12 @@ brew cask install transmission
 
 # we need ffmpeg
 brew install ffmpeg
+
+# node
+brew install node
+
+# install fonts
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
 
 # vim: ft=zsh
