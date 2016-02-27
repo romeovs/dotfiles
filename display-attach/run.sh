@@ -21,31 +21,33 @@ log () {
   echo $NOW - $@ >> "$LOGFILE"
 }
 
-creep () {
-  log 'Display connected, changing to `creep`'
+connect () {
   $HERE/change.applescript creep
+  /usr/local/bin/blueutil power 1
 }
 
-term () {
-  log 'Display not connected, changing to `term`'
+disconnect () {
   $HERE/change.applescript term
+  /usr/local/bin/blueutil power 0
 }
 
 connected () {
   if [ -f "$LOCKFILE" ]; then
-    log 'Display connected, already changed to `creep`'
+    log 'Display connected, already ran connect'
   else
+    log 'Display connected, running connect'
     touch "$LOCKFILE"
-    creep
+    connect
   fi
 }
 
 disconnected () {
   if [ -f "$LOCKFILE" ]; then
+    log 'Display not connected, running disconnect'
     rm -rf "$LOCKFILE"
-    term
+    disconnect
   else
-    log 'Display not connected, already changed to `term`'
+    log 'Display not connected, already ran disconnect'
   fi
 }
 

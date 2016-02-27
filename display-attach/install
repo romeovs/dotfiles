@@ -1,6 +1,8 @@
 
 DEST="${HOME}/Library/LaunchAgents/display-attach.plist"
 
+brew install blueutil
+
 # install launch agent
 ln -sf "${PWD}/run.plist" "${DEST}"
 
