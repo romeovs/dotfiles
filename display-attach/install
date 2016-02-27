@@ -1,0 +1,9 @@
+
+DEST="${HOME}/Library/LaunchAgents/display-attach.plist"
+
+# install launch agent
+ln -sf "${PWD}/run.plist" "${DEST}"
+
+# start launch agent
+launchctl load -w "${DEST}"
+
