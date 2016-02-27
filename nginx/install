@@ -11,8 +11,8 @@ brew install php54 --with-postgresql --with-homebrew-libxslt
 PFX=$(brew --prefix)
 
 
-ln -sfv ${PFX}/opt/nginx/*.plist  ~/Library/LaunchAgent
-ln -sfv ${PFX}/opt/postgresql/*.plist ~/Library/LaunchAgents
+ln -sfv ${PFX}/opt/nginx/*.plist  ~/Library/LaunchAgents/
+ln -sfv ${PFX}/opt/postgresql/*.plist ~/Library/LaunchAgents/
 ln -sfv ${PFX}/opt/php54/homebrew.mxcl.php54.plist ~/Library/LaunchAgents/
 
 ln -sfv "${PWD}/nginx.conf" "$PFX/etc/nginx/nginx.conf"
