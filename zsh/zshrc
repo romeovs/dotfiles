@@ -1,3 +1,11 @@
+
+case $- in *i*)
+  if [ -z "$TMUX" ];
+    then exec tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf;
+  fi;
+esac
+
+
 # needs to be done here instead of zshenv to prevent /etc/profile from
 # overwriting it
 # export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
@@ -255,5 +263,5 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-#
+
 # vim: fdm=marker

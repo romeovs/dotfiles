@@ -1,7 +1,7 @@
 
 # ls
 alias ls="ls -1HhFp --color --group-directories-first --time-style='+%Y-%m-%d %H:%M:%S' --hide='Icon?' --hide='.DS_Store' --ignore='lost+found'"
-alias l="ls -l"
+alias l="ls -lN"
 alias lsb="ls -Ssr"
 alias la="ls -lA"
 alias ks="ls"
