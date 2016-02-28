@@ -6,9 +6,6 @@ brew install --HEAD neovim
 
 vimdir="${PWD}/vimfiles"
 
-mkdir -p  "$vimdir/bundle"
-git clone https://github.com/Shougo/neobundle.vim "$vimdir/bundle/neobundle.vim"
-
 # set up cache folders
 mkdir -p $XDG_CACHE_HOME/nvim/{backup,swap,undo}
 

@@ -13,80 +13,63 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " set correct vimdir
 set runtimepath+=$VIM_HOME
 
-" NEOBUNDLE <<
-if has('vim_starting')
-  set runtimepath+=$VIM_HOME/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('$VIM_HOME/bundle/'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\   'mac' : 'make -f make_mac.mak',
-\ }}
+" PLUGINS <<
+call plug#begin(expand('$VIM_HOME/bundle/'))
 " >>
 
 " PLUGINS <<
-NeoBundle 'tpope/vim-surround'    " mappings to work with ' ( etc
-NeoBundle 'tpope/vim-repeat'      " repeat more stuff
-NeoBundle 'edsono/vim-matchit'    " better matching with %
-NeoBundle 'godlygeek/tabular'     " table alignment
-NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'kana/vim-textobj-entire'
-NeoBundle 'reedes/vim-textobj-quote'
+Plug 'tpope/vim-surround'    " mappings to work with ' ( etc
+Plug 'tpope/vim-repeat'      " repeat more stuff
+Plug 'edsono/vim-matchit'    " better matching with %
+Plug 'godlygeek/tabular'     " table alignment
+Plug 'terryma/vim-expand-region'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
+Plug 'reedes/vim-textobj-quote'
 
 " snippets
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle 'reedes/vim-wordy'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'reedes/vim-wordy'
 " NeoBundle 'honza/vim-snippets'
 
 " >>
 
 " FILETYPE PLUGINS <<
-NeoBundleLazy 'eagletmt/ghcmod-vim', {
-\ 'autooad': {
-\   'commands': [ 'GhcModType', 'GhcModTypeClear',
-\                 'GhcModCheckAsync', 'GhcModCheck',
-\                 'GhcModLintAsync', 'GhcModLint' ]
-\ }}
+Plug 'eagletmt/ghcmod-vim'
 
-NeoBundleLazy 'rstacruz/sparkup', {
-\ 'autoload': {
-\   'filetypes': ['html', 'html5', 'php']
-\ }}
+Plug 'rstacruz/sparkup'
 
-NeoBundle 'vim-scripts/scribble.vim'          " scribble
-NeoBundle 'niklasl/vim-rdf'                   " RDF, turtle, ...
-NeoBundle 'eagletmt/neco-ghc'                 " Haskell complete
-NeoBundle 'vim-scripts/applescript.vim'       " applescript
-NeoBundle 'othree/html5.vim'                  " html5
-NeoBundle 'mustache/vim-mustache-handlebars'  " mustache / handlebars
-NeoBundle 'romeovs/vim-stylus'                 " stylus
-NeoBundle 'evanmiller/nginx-vim-syntax'       " nginx
-" NeoBundle 'tpope/vim-markdown'                " markdown
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'vim-scripts/octave.vim'            " octave
-NeoBundle 'killphi/vim-ebnf'                  " ebnf
-NeoBundle 'guns/vim-clojure-static'           " clojure
-NeoBundle 'tpope/vim-rails'                   " Ruby Rails
-NeoBundle 'kchmck/vim-coffee-script'          " coffeescript
-NeoBundle 'idris-hackers/idris-vim'           " idris
-NeoBundle 'derekelkins/agda-vim'              " agda
-NeoBundle 'statianzo/vim-jade'                " jade
-NeoBundle 'wlangstroth/vim-racket'            " racket
-NeoBundle 'nickng/vim-scribble'               " scribble
-NeoBundle 'alunny/pegjs-vim'                  " pegjs
-NeoBundle 'jsx/jsx'                           " jsx
-" NeoBundle 'romeovs/vim-javascript'            " jsx
-" NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'gkz/vim-ls'                        " livescript
+Plug 'vim-scripts/scribble.vim'          " scribble
+Plug 'niklasl/vim-rdf'                   " RDF, turtle, ...
+Plug 'eagletmt/neco-ghc'                 " Haskell complete
+Plug 'vim-scripts/applescript.vim'       " applescript
+Plug 'othree/html5.vim'                  " html5
+" Plug 'mustache/vim-mustache-handlebars'  " mustache / handlebars
+Plug 'romeovs/vim-stylus'                 " stylus
+Plug 'evanmiller/nginx-vim-syntax'       " nginx
+Plug 'tpope/vim-markdown'                " markdown
+Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown'
+Plug 'vim-scripts/octave.vim'            " octave
+Plug 'killphi/vim-ebnf'                  " ebnf
+Plug 'guns/vim-clojure-static'           " clojure
+Plug 'tpope/vim-rails'                   " Ruby Rails
+Plug 'kchmck/vim-coffee-script'          " coffeescript
+Plug 'idris-hackers/idris-vim'           " idris
+Plug 'derekelkins/agda-vim'              " agda
+Plug 'statianzo/vim-jade'                " jade
+Plug 'wlangstroth/vim-racket'            " racket
+Plug 'nickng/vim-scribble'               " scribble
+Plug 'alunny/pegjs-vim'                  " pegjs
+Plug 'jsx/jsx'                           " jsx
+" Plug 'romeovs/vim-javascript'            " jsx
+" Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'gkz/vim-ls'                        " livescript
+Plug 'elmcast/elm-vim'               " elm
 " >>
 
 " FIX TIMEOUTS <<
@@ -245,7 +228,7 @@ nnoremap <cr> G
 nnoremap <bs> gg
 
 " bubble lines
-NeoBundle 'tpope/vim-unimpaired'  " bracket mappings
+Plug 'tpope/vim-unimpaired'  " bracket mappings
 nmap <silent> <up> [e
 nmap <silent> <down> ]e
 
@@ -269,10 +252,7 @@ tnoremap <C-w> <C-\><C-n>
 " >>
 
 " COMMENTS <<
-NeoBundleLazy 'tomtom/tcomment_vim', {
-\  'autoload': {
-\    'commands': ['TComment']
-\  }}
+Plug 'tomtom/tcomment_vim'
 
 
 " add comment types
@@ -288,7 +268,7 @@ vmap       <silent> '  :TComment<CR>
 " >>
 
 " STATUSLINE AND COMMANDLINE <<
-NeoBundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 set showcmd       " show command being typed
 set shortmess=a   " truncate messages
@@ -321,14 +301,14 @@ endfunc
 " >>
 
 " editor config <<
-NeoBundle 'vim-scripts/PreserveNoEOL'      " for editorconfig
-NeoBundle 'editorconfig/editorconfig-vim'  " editorconfig
+Plug 'vim-scripts/PreserveNoEOL'      " for editorconfig
+Plug 'editorconfig/editorconfig-vim'  " editorconfig
 let g:EditorConfig_verbose = 0
 let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 " >>
 
 " TEMPLATES <<
-NeoBundle 'aperezdc/vim-template' " templates
+Plug 'aperezdc/vim-template' " templates
 let g:templates_name_prefix = 'default'
 let g:templates_global_name_prefix = 'default'
 let g:templates_directory = "$VIM_HOME/templates"
@@ -398,9 +378,9 @@ let g:expand_region_text_objects = {
 \ }
 
 " load mustache
-au BufNewFile,BufRead,BufNew *.hbs set ft=mustache
+au BufNewFile,BufRead,BufNew *.hbs setl ft=mustache
 
-call neobundle#end()
+call plug#end()
 
 
 
