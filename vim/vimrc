@@ -15,61 +15,53 @@ set runtimepath+=$VIM_HOME
 
 " PLUGINS <<
 call plug#begin(expand('$VIM_HOME/bundle/'))
-" >>
 
-" PLUGINS <<
-Plug 'tpope/vim-surround'    " mappings to work with ' ( etc
-Plug 'tpope/vim-repeat'      " repeat more stuff
-Plug 'edsono/vim-matchit'    " better matching with %
-Plug 'godlygeek/tabular'     " table alignment
-Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
+Plug 'tpope/vim-repeat'           " repeat more stuff
+Plug 'edsono/vim-matchit'         " better matching with %
+Plug 'godlygeek/tabular'          " table alignment
+Plug 'terryma/vim-expand-region'  " handy expansion of region
+
+" some textobjects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 Plug 'reedes/vim-textobj-quote'
 
-" snippets
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'reedes/vim-wordy'
-" NeoBundle 'honza/vim-snippets'
+" FILETYPE PLUGINS
 
-" >>
+" haskell
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc',   { 'for': 'haskell' }
 
-" FILETYPE PLUGINS <<
-Plug 'eagletmt/ghcmod-vim'
+" html
+Plug 'othree/html5.vim'
+Plug 'rstacruz/sparkup',    { 'for': [ 'html', 'javascript' ] }
 
-Plug 'rstacruz/sparkup'
-
-Plug 'vim-scripts/scribble.vim'          " scribble
-Plug 'niklasl/vim-rdf'                   " RDF, turtle, ...
-Plug 'eagletmt/neco-ghc'                 " Haskell complete
-Plug 'vim-scripts/applescript.vim'       " applescript
-Plug 'othree/html5.vim'                  " html5
-" Plug 'mustache/vim-mustache-handlebars'  " mustache / handlebars
-Plug 'romeovs/vim-stylus'                 " stylus
-Plug 'evanmiller/nginx-vim-syntax'       " nginx
-Plug 'tpope/vim-markdown'                " markdown
-Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
-Plug 'vim-scripts/octave.vim'            " octave
-Plug 'killphi/vim-ebnf'                  " ebnf
-Plug 'guns/vim-clojure-static'           " clojure
-Plug 'tpope/vim-rails'                   " Ruby Rails
-Plug 'kchmck/vim-coffee-script'          " coffeescript
-Plug 'idris-hackers/idris-vim'           " idris
-Plug 'derekelkins/agda-vim'              " agda
-Plug 'statianzo/vim-jade'                " jade
-Plug 'wlangstroth/vim-racket'            " racket
-Plug 'nickng/vim-scribble'               " scribble
-Plug 'alunny/pegjs-vim'                  " pegjs
-Plug 'jsx/jsx'                           " jsx
-" Plug 'romeovs/vim-javascript'            " jsx
-" Plug 'jelera/vim-javascript-syntax'
+" js
+Plug 'jsx/jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'gkz/vim-ls'                        " livescript
-Plug 'elmcast/elm-vim'               " elm
+
+" stylus
+Plug 'romeovs/vim-stylus'
+
+" handlebars
+Plug 'mustache/vim-mustache-handlebars'
+
+" elm
+Plug 'elmcast/elm-vim'
+
+" applescript
+Plug 'vim-scripts/applescript.vim'
+
+" markdown
+Plug 'tpope/vim-markdown'
+
+" nginx
+Plug 'evanmiller/nginx-vim-syntax'
+
+" octave
+Plug 'vim-scripts/octave.vim'
 " >>
 
 " FIX TIMEOUTS <<
@@ -228,10 +220,10 @@ nnoremap <cr> G
 nnoremap <bs> gg
 
 " bubble lines
-Plug 'tpope/vim-unimpaired'  " bracket mappings
+Plug 'tpope/vim-unimpaired'
+
 nmap <silent> <up> [e
 nmap <silent> <down> ]e
-
 vmap <silent> <up>   [egv
 vmap <silent> <down> ]egv
 
@@ -253,7 +245,6 @@ tnoremap <C-w> <C-\><C-n>
 
 " COMMENTS <<
 Plug 'tomtom/tcomment_vim'
-
 
 " add comment types
 au FileType php   set commentstring=<!--\ %s\ -->
@@ -377,13 +368,6 @@ let g:expand_region_text_objects = {
 \ 'ie'  :0,
 \ }
 
-" load mustache
-au BufNewFile,BufRead,BufNew *.hbs setl ft=mustache
-
-call plug#end()
-
-
-
 " quotes
 function! Quotes ()
   call textobj#quote#init()
@@ -391,5 +375,6 @@ endfunction
 
 let g:textobj#quote#matchit = 1
 
+call plug#end()
 
 " vim: fdm=marker foldmarker=<<,>>
