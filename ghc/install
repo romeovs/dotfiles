@@ -1,8 +1,6 @@
 
 # install stuff
-brew install ghc cabal-install
+brew install ghc cabal-install haskell-stack
 
 # update cabal
-cabal update
-cabal install happy
-cabal install hoogle pointfree pointfull ghc-mod
+stack install happy hlint ghc-mod hoogle pointfree pointful hdevtools
