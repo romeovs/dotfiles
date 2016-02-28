@@ -2,9 +2,12 @@
 hi ghcmodType ctermbg=237
 let g:ghcmod_type_highlight = 'ghcmodType'
 map <silent> _t :GhcModType<cr>
+map <silent> _i :GhcModInfo<cr>
+map <silent> _l :GhcModLintAsync<cr>
+map <silent> _c :GhcModCheckAsync<cr>
 map <silent> __ :GhcModTypeClear<cr>
-map <silent> <c-m> :GhcModCheckAsync<cr>
-map <silent> <c-l> :GhcModLintAsync<cr>
+
+set formatprg=pointfree
 
 set conceallevel=1
 set concealcursor=nvi
