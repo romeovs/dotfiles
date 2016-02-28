@@ -5,4 +5,4 @@ brew install ghc cabal-install
 # update cabal
 cabal update
 cabal install happy
-cabal install hoogle pointfree pointfull
+cabal install hoogle pointfree pointfull ghc-mod
