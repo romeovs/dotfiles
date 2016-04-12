@@ -34,6 +34,9 @@ Plug 'reedes/vim-textobj-quote'
 
 " FILETYPE PLUGINS
 
+" golang
+Plug 'fatih/vim-go'
+
 " haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',   { 'for': 'haskell' }
