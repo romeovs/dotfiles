@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PVAL=`pbpaste`
+CMD=""
+
+for var in "$@"; do
+  CMD="$CMD ${var//__/$PVAL}"
+done
+
+$CMD
