@@ -43,11 +43,13 @@ brew cask install transmission
 # we need ffmpeg
 brew install ffmpeg
 
-# node
-brew install node
+
+# java
+brew install java
 
 # install fonts
 brew tap caskroom/fonts
 brew cask install font-source-code-pro
+
 
 # vim: ft=zsh
