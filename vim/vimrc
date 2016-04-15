@@ -108,7 +108,7 @@ set nocindent     " no strict indentation
 
 " listchars <<
 " set listchars to only show tabs and trailing whitespace
-exec "set listchars=trail:\uB7,nbsp:_,tab:\uBB\uBB"
+exec "set listchars=trail:\uB7,nbsp:_,tab:\uBB\\ "
 set list
 " >>
 
