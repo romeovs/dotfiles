@@ -1,0 +1,7 @@
+TTNROOT=$GOPATH/src/github.com/TheThingsNetwork
+
+function ttn () {
+  cd $TTNROOT
+  echo "The Things Network projects:"
+  ls -1
+}
