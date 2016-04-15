@@ -1,9 +1,10 @@
+#
+# case $- in *i*)
+#   if [ -z "$TMUX" ];
+#     then exec tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf;
+#   fi;
+# esac
 
-case $- in *i*)
-  if [ -z "$TMUX" ];
-    then exec tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf;
-  fi;
-esac
 
 
 # needs to be done here instead of zshenv to prevent /etc/profile from
