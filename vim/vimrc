@@ -74,6 +74,10 @@ Plug 'evanmiller/nginx-vim-syntax'
 
 " octave
 Plug 'vim-scripts/octave.vim'
+
+" Todo's
+Plug 'freitass/todo.txt-vim'
+
 " >>
 
 " FIX TIMEOUTS <<
@@ -387,6 +391,17 @@ function! Quotes ()
 endfunction
 
 let g:textobj#quote#matchit = 1
+
+
+" TODO
+let g:simple_todo_map_keys = 0
+let g:simple_todo_tick_symbol = '*'
+
+nmap <leader>i <Plug>(simple-todo-new-start-of-line)
+nmap <leader>I <Plug>(simple-todo-below)
+nmap <leader>x <Plug>(simple-todo-mark-as-done)
+nmap <leader>u <Plug>(simple-todo-mark-as-done)
+
 
 call plug#end()
 
