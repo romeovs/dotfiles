@@ -41,6 +41,9 @@ Plug 'fatih/vim-go'
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',   { 'for': 'haskell' }
 
+" purescript
+Plug 'raichoo/purescript-vim'
+
 " html
 Plug 'othree/html5.vim'
 Plug 'rstacruz/sparkup',    { 'for': [ 'html', 'javascript' ] }
