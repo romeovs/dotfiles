@@ -1,0 +1,2 @@
+brew install go
+go get github.com/kr/godep

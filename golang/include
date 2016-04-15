@@ -1,0 +1,5 @@
+
+# set go path
+export GOPATH=$HOME/code/go
+
+
