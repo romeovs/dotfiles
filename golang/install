@@ -1,2 +1,5 @@
 brew install go
+
 go get github.com/kr/godep
+go get golang.org/x/tools/cmd/goimports
+go get -u github.com/golang/lint/golint
