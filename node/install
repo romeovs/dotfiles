@@ -1,0 +1,8 @@
+
+brew install node
+
+npm i -g pnpm
+
+pnpm i -g babel-cli mocha eslint
+
+# vim: ft=zsh
