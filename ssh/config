@@ -16,4 +16,28 @@ Host nuc
     Port 6103
     User romeovs
 
+Host mailserver
+  Hostname mail.datgoedgoed.be
+  User ec2-user
+  IdentityFile ~/.ssh/mail.pem
+
+host ec2
+  Hostname 52.50.117.84
+  User romeo
+
+host ec2-root
+  Hostname 52.50.117.84
+  User root
+  IdentityFile ~/.ssh/dokkuarch.pem
+
+# Host dokku
+#   Hostname mail.datgoedgoed.be
+#   User dokku
+
+Host dokku
+  Hostname www.romeovansnick.be
+  Port 6103
+  User dokku
+
+
 # vim: ft=sshconfig
