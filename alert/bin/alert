@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cmd=$1
+
+# foce color for gulp
+FORCE_COLOR=1 $@ | ding alerter -message 'Something went wrong' -title "$cmd"
