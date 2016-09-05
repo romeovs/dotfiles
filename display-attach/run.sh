@@ -22,7 +22,8 @@ log () {
 }
 
 connect () {
-  $HERE/change.applescript creep
+  # $HERE/change.applescript creep
+  $HERE/change.applescript "term big"
   /usr/local/bin/blueutil power 1
 }
 
@@ -51,4 +52,4 @@ disconnected () {
   fi
 }
 
-ioreg -p IOUSB | grep flirc > /dev/null && connected || disconnected
+ioreg -p IOUSB | grep HHKB > /dev/null && connected || disconnected
