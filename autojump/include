@@ -1,6 +1,0 @@
-
-if [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]]; then
-  . $(brew --prefix)/etc/profile.d/autojump.sh
-fi
-
-# vim: ft=zsh
