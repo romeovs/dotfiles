@@ -1,5 +1,12 @@
 
 # set go path
-export GOPATH=$HOME/code/go
+
+# export GOINSTALL="$XDG_CACHE_HOME/go"
+# export GOHOME="$HOME/code/go"
+# export GOPATH="$GOINSTALL:$HOME/code/go"
+# export PATH="$GOINSTALL/bin:$GOHOME/bin:$PATH"
+#
+export GOPATH="$HOME/code/go"
 export PATH="$GOPATH/bin:$PATH"
 
+# vim: ft=zsh
