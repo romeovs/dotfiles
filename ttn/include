@@ -1,7 +1,9 @@
-TTNROOT=$GOPATH/src/github.com/TheThingsNetwork
 
-function ttn () {
-  cd $TTNROOT
-  echo "The Things Network projects:"
-  ls -1
-}
+TTNROOT=$HOME/code/go/src/github.com/TheThingsNetwork
+
+alias ttnctll="ttnctl --config $HOME/.ttnctl.local.yaml"
+alias ttnctls="ttnctl --config $HOME/.ttnctl.staging.yaml"
+alias ttnctld="$TTNROOT/ttn/release/ttnctl-darwin-amd64 --config $HOME/.ttnctl.local.yaml"
+alias ttnctlr="$TTNROOT/ttn/release/ttnctl-darwin-amd64 --config $HOME/.ttnctl.refactor.yaml"
+
+# vim: ft=zsh

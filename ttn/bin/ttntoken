@@ -1,0 +1,21 @@
+#!/bin/sh
+username=$1
+server=$3
+pwd=$2
+if [ -d $pwd ]; then
+  read -s  -p Password: pwd
+  echo
+fi
+
+if [ -d $server ]; then
+  server=https://account.thethingsnetwork.org
+fi
+
+res=`curl -s $server/users/token -d "username=$username&password=$pwd&grant_type=password" --user ttnctl:`
+
+if [ "$?" == 0 ]; then
+  echo $res | jq '.access_token, .error_description' -r | tr '\n' ' ' | sed 's/ *null *//g'
+else
+  echo $res
+fi
+
