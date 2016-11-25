@@ -1,0 +1,13 @@
+brew cask install basictex
+
+sudo tlmgr update --self
+sudo tlmgr install \
+   latexmk \
+   babel \
+   hyperref \
+   enumitem \
+   environ \
+   microtype \
+   titlesec \
+   xcolor \
+   trimspaces
