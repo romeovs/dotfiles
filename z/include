@@ -1,0 +1,12 @@
+. `brew --prefix`/etc/profile.d/z.sh
+
+alias j='z'
+alias zr='z -r'
+alias zt='z -t'
+
+function zl () {
+  z $@
+  ls -1HhFplN --color --group-directories-first --time-style='+%Y-%m-%d %H:%M:%S' --hide='Icon?' --hide='.DS_Store' --ignore='lost+found'
+}
+
+# vim: ft=zsh
