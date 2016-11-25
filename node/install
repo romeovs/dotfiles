@@ -1,8 +1,5 @@
 
 brew install node
-
-npm i -g pnpm
-
-pnpm i -g babel-cli mocha eslint
+npm install -g yarn babel-cli eslint gulp
 
 # vim: ft=zsh
