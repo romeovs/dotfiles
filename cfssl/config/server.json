@@ -2,7 +2,7 @@
   "CN": "TTN Dev Certificate",
   "hosts": [
     "dev.ttn.dash",
-    "dev.ttn.*"
+    "dev.ttn.auth"
   ],
   "key": {
     "algo": "rsa",
