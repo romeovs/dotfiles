@@ -22,7 +22,7 @@ hi NonText          ctermfg=black   ctermbg=16      cterm=none
 
 hi CursorLine       ctermbg=16      cterm=none      ctermfg=none
 hi CursorColumn     ctermbg=234     cterm=none
-hi MatchParen       ctermfg=16    ctermbg=29
+hi MatchParen       ctermbg=43     ctermfg=16
 
 hi Pmenu            ctermfg=none  ctermbg=236 cterm=none
 hi PmenuSel         ctermfg=white ctermbg=237 cterm=none

@@ -13,11 +13,10 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " set correct vimdir
 set runtimepath+=$VIM_HOME
 
-" PLUGINS <<
+" plugins <<
 call plug#begin(expand('$VIM_HOME/bundle/'))
 
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
-
 
 Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
 Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
@@ -26,14 +25,9 @@ Plug 'edsono/vim-matchit'         " better matching with %
 Plug 'godlygeek/tabular'          " table alignment
 Plug 'terryma/vim-expand-region'  " handy expansion of region
 
-" some textobjects
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-entire'
-Plug 'reedes/vim-textobj-quote'
+" >>
 
-" FILETYPE PLUGINS
-
+" filetype plugins <<
 " golang
 Plug 'fatih/vim-go'
 
@@ -41,25 +35,23 @@ Plug 'fatih/vim-go'
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',   { 'for': 'haskell' }
 
-" purescript
-Plug 'raichoo/purescript-vim'
-
 " html
 Plug 'othree/html5.vim'
 Plug 'rstacruz/sparkup',    { 'for': [ 'html', 'javascript' ] }
 
 " js
 Plug 'jsx/jsx'
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
 
-" stylus
-Plug 'romeovs/vim-stylus'
+" css
+Plug 'JulesWang/css.vim'
+Plug 'hhsnopek/vim-sugarss'
+" Plug 'romeovs/vim-stylus'
+Plug 'aisapatino/vim-stylus'
 
 " handlebars
 Plug 'mustache/vim-mustache-handlebars'
-
-" elm
-Plug 'elmcast/elm-vim'
 
 " applescript
 Plug 'vim-scripts/applescript.vim'
@@ -75,18 +67,15 @@ Plug 'evanmiller/nginx-vim-syntax'
 " octave
 Plug 'vim-scripts/octave.vim'
 
-" Todo's
-Plug 'freitass/todo.txt-vim'
-
 " >>
 
-" FIX TIMEOUTS <<
+" fix timeouts <<
 set timeout
 set timeoutlen=750
 set timeoutlen=500
 " >>
 
-" COLORS <<
+" colors <<
 syntax on                  " enable syntax highlighting
 filetype plugin indent on  " enable filetyp and indentation
 colorscheme custom         " color schme
@@ -94,7 +83,7 @@ set cursorline             " highlight cursor line
 set number                 " enable linenumbers
 " >>
 
-" INDENTATION <<
+" indentation <<
 set softtabstop=0 " don't use soft tabstops
 set tabstop=2     " width of tab character
 set shiftwidth=2  " > > moves 4 spaces
@@ -153,7 +142,7 @@ set scrolloff=8         " set 8 lines of padding top/bottom while scrolling
 set equalalways         " make splits equal
 " >>
 
-" SWAP <<
+" swap <<
 set undodir=$XDG_CACHE_HOME/nvim/undo
 set undofile
 
@@ -168,7 +157,7 @@ let g:netrw_home=expand('$XDG_CACHE_HOME/nvim')
 set viminfo='100,n$XDG_CACHE_HOME/nvim/viminfo  " viminfo location
 " >>
 
-" FOLDING <<
+" folding <<
 " sets the fold text
 function! FoldText()
   let nl   = v:foldend + v:foldstart + 1
@@ -186,8 +175,9 @@ set foldcolumn=2
 set foldtext=FoldText()
 " >>
 
-" MAP KEYS <<
+" map keys <<
 let mapleader = "\<space>"
+
 " escape with jkl
 imap jkl <esc>
 
@@ -259,7 +249,7 @@ tnoremap <C-w> <C-\><C-n>
 
 " >>
 
-" COMMENTS <<
+" comments <<
 Plug 'tomtom/tcomment_vim'
 
 " add comment types
@@ -274,7 +264,7 @@ vmap       <silent> '  :TComment<CR>
 
 " >>
 
-" STATUSLINE AND COMMANDLINE <<
+" statusline and commandline <<
 Plug 'bling/vim-airline'
 
 set showcmd       " show command being typed
@@ -314,7 +304,7 @@ let g:EditorConfig_verbose = 0
 let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 " >>
 
-" TEMPLATES <<
+" templates <<
 Plug 'aperezdc/vim-template' " templates
 let g:templates_name_prefix = 'default'
 let g:templates_global_name_prefix = 'default'
@@ -365,13 +355,18 @@ map <F7> :call MySpellLang()<CR>
 imap <F7> <C-o>:call MySpellLang()<CR
 " >>
 
-" SLIME <<
+" slime <<
 Plug 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 " >>
 
-" REGION
+" text obj <<
+Plug 'reedes/vim-textobj-quote'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
+
 let g:expand_region_text_objects = {
 \ 'iw'  :0,
 \ 'iW'  :0,
@@ -380,10 +375,11 @@ let g:expand_region_text_objects = {
 \ 'i)'  :1,
 \ 'i]'  :1,
 \ 'i}'  :1,
-\ 'is'  :0,
+\ 'is'  :1,
 \ 'ip'  :0,
 \ 'ie'  :0,
 \ }
+
 
 " quotes
 function! Quotes ()
@@ -391,17 +387,26 @@ function! Quotes ()
 endfunction
 
 let g:textobj#quote#matchit = 1
+" >>
 
+" easy motion <<
+Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_do_mapping = 0
 
-" TODO
-let g:simple_todo_map_keys = 0
-let g:simple_todo_tick_symbol = '*'
+nmap s <Plug>(easymotion-overwin-w)
+" >>
 
-nmap <leader>i <Plug>(simple-todo-new-start-of-line)
-nmap <leader>I <Plug>(simple-todo-below)
-nmap <leader>x <Plug>(simple-todo-mark-as-done)
-nmap <leader>u <Plug>(simple-todo-mark-as-done)
+" completion <<
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Shougo/echodoc'
 
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#pointer = 1
+
+set completeopt+=noinsert
+set completeopt-=preview
+ >>
 
 call plug#end()
 
