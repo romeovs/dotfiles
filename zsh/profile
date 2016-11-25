@@ -3,6 +3,7 @@
 # initialize homerun
 source ${XDG_CONFIG_HOME}/homerun/initialize
 
+hash -d ttn=$TTNROOT
 hash -d vub=~/Documents/vub/
 
 source ${XDG_CONFIG_HOME}/zsh/antigen.zsh
