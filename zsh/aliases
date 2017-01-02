@@ -45,6 +45,11 @@ alias upf="hhl pointful"
 
 # auto sudoedit when file is not editable in vim
 alias e="$EDITOR"
+alias a="git add"
+alias c="git commit"
+function fixup() {
+  git commit --fixup="$1"
+}
 
 # node
 alias babel-node="babel-node --harmony" # --stage 0 --blacklist 'spec.functionName'"
