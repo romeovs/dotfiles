@@ -22,8 +22,8 @@ log () {
 }
 
 connect () {
-  # $HERE/change.applescript creep
-  $HERE/change.applescript "term big"
+  $HERE/change.applescript creep
+  # $HERE/change.applescript "term big"
   /usr/local/bin/blueutil power 1
 }
 
