@@ -19,6 +19,7 @@ let colors_name = "custom"
 hi Cursor           ctermfg=none    ctermbg=none
 hi Normal           ctermfg=none    ctermbg=none    cterm=none
 hi NonText          ctermfg=black   ctermbg=16      cterm=none
+hi Punctuation      ctermfg=none     ctermbg=none   cterm=none
 
 hi CursorLine       ctermbg=16      cterm=none      ctermfg=none
 hi CursorColumn     ctermbg=234     cterm=none
@@ -61,6 +62,7 @@ hi Keyword          ctermfg=95     cterm=none " 137 or 95
 hi Constant         ctermfg=yellow  cterm=none
 hi Number           ctermfg=yellow  cterm=none
 hi Special          ctermfg=red     cterm=none
+hi Operator         ctermfg=red     cterm=none
 hi PreProc          ctermfg=229
 
 hi TabLineSel       ctermfg=yellow  ctermbg=none    cterm=none
