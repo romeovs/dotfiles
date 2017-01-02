@@ -41,9 +41,12 @@ Host ttn-staging
   IdentityFile ~/.ssh/romeovs_rsa
 
 Host ttn-dashboard
-  Hostname dashboard.thethingsnetwork.org
+  # Hostname 40.114.249.243
+  Hostname 40.115.44.103
+  # Hostname staging.thethingsnetwork.org
   User ubuntu
   IdentityFile ~/.ssh/romeovs_rsa
+  IdentitiesOnly yes
 
 Host ttn-forum
   Hostname forum.thethingsnetwork.org
@@ -56,12 +59,12 @@ Host ttn-shop
   IdentityFile ~/.ssh/ttn_shop
 
 Host ttn-account
-  Hostname account.thethingsnetwork.org
+  Hostname 40.68.168.181
   User ubuntu
   IdentityFile ~/.ssh/ttn_id_rsa
 
 Host ttn-account-preview
-  Hostname preview.account.thethingsnetwork.org
+  Hostname 13.95.238.35
   User ubuntu
   IdentityFile ~/.ssh/ttn_id_rsa
 
@@ -81,10 +84,29 @@ Host ttn-console-preview
   User ubuntu
   IdentityFile ~/.ssh/id_dash_prev
 
+Host ttn-console
+  Hostname console.thethingsnetwork.org
+  User ubuntu
+  IdentityFile ~/.ssh/id_dash_prev
+
+
+Host ttn-account-v1
+  Hostname 13.81.58.55
+  User romeo
+  IdentityFile ~/.ssh/id_ttn_account_v1
+  IdentitiesOnly yes
+
+Host ttn-account-v2
+  Hostname 104.40.216.89
+  User romeo
+  IdentityFile ~/.ssh/id_ttn_account_v2
+  IdentitiesOnly yes
+
 Host do
   Hostname 146.185.140.158
   User romeovs
   IdentityFile ~/.ssh/id_ocean
   IdentitiesOnly yes
+
 
 # vim: ft=sshconfig
