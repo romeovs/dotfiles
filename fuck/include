@@ -1,1 +1,6 @@
-eval $(thefuck --alias)
+function fuck () {
+  eval $(thefuck --alias)
+  fuck "$@"
+}
+
+# vim: ft=zsh
