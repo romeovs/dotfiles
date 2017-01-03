@@ -21,7 +21,7 @@ Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
 Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
 Plug 'tpope/vim-repeat'           " repeat more stuff
-Plug 'edsono/vim-matchit'         " better matching with %
+Plug 'vim-scripts/matchit.zip'         " better matching with %
 Plug 'godlygeek/tabular'          " table alignment
 Plug 'terryma/vim-expand-region'  " handy expansion of region
 
