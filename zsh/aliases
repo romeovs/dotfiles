@@ -44,7 +44,7 @@ alias pf="hhl pointfree"
 alias upf="hhl pointful"
 
 # auto sudoedit when file is not editable in vim
-alias e="$EDITOR"
+# alias e="$EDITOR"
 alias a="git add"
 alias c="git commit"
 function fixup() {

@@ -1,0 +1,14 @@
+
+
+function _edit () {
+  nvim -u /Users/romeo/.config/vim/vimrc -p $@
+}
+
+if [ -t 0 ]; then
+  _edit $@
+else
+  ARGS=`tee`
+  _edit $ARGS
+fi
+
+# vim: ft=sh
