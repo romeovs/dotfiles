@@ -65,9 +65,6 @@
   untracked = red
   nobranch  = red
 
-[push]
-  default = simple
-
 [credential]
   helper = osxkeychain
 
