@@ -47,14 +47,13 @@ Plug 'rstacruz/sparkup',    { 'for': [ 'html', 'javascript' ] }
 " Plug 'othree/es.next.syntax.vim'
 " Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
+
 let g:jsx_ext_required = 0
 
 " css
-Plug 'JulesWang/css.vim'
-Plug 'hhsnopek/vim-sugarss'
-" Plug 'romeovs/vim-stylus'
-Plug 'aisapatino/vim-stylus'
+Plug 'JulesWang/css.vim', { 'for': [ 'css', 'stylus' ] }
+Plug 'hhsnopek/vim-sugarss', { 'for': 'sugarss' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 " handlebars
 Plug 'mustache/vim-mustache-handlebars'
