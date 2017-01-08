@@ -1,10 +1,6 @@
 host *
   IdentitiesOnly yes
 
-Host soft
-  Hostname wilma.vub.ac.be
-  User se3_1415
-
 Host github
   Hostname github.com
   User git
