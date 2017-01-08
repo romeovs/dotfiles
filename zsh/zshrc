@@ -1,12 +1,3 @@
-
-# case $- in *i*)
-#   if [ -z "$TMUX" ];
-#     then exec tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf;
-#   fi;
-# esac
-
-
-
 # needs to be done here instead of zshenv to prevent /etc/profile from
 # overwriting it
 # export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
@@ -85,52 +76,55 @@ unsetopt CDABLE_VARS        # if location for cd command is not there try to put
 # }}}
 
 # PROMPTS {{{
-# autoload -Uz vcs_info
-# autoload -U colors && colors
-# zstyle ':vcs_info:*' stagedstr '%b%F{green}'
-# zstyle ':vcs_info:*' unstagedstr '%b%F{yellow}'
-# zstyle ':vcs_info:*' check-for-changes true
-# zstyle ':vcs_info:*' formats '%B%F{black}%u%c[%%b%b%B%F{black}%u%c]%%b%f'
-# zstyle ':vcs_info:*' enable git svn
-# precmd() {
-#     vcs_info
-# }
-#
 autoload -U $XDG_CONFIG_HOME/zsh/functions/*
 setopt prompt_subst
 local gc="%(?, ,%F{black}%? %F{red}!%b%f)"
 local jb="%(1j,_, )"
 PS1='%F{yellow}|%F{black}%\[%F{red}%1c%F{black}%\]$ %f%b'
-# PS1='%F{black}%1c%B%F{black} %f%b'
-# PS1='%F{black}%B%1c%b%F{black} > %b'
 
-RPS1='%F{magenta}$VIMODE ${gc}'
 PS2='%B%F{black}%_> %f%b'
 RPS2='%B%F{black} ... %f%b'
 PS3="%F{blue} ?# %b"
 
+RPS1='%F{magenta}$VIMODE ${gc} %F{magenta}${ETIME} %F{black}[%D{%L:%M:%S %p}]%f%b'
+REPORTTIME=1
+
+TMOUT=1
+
+TRAPALRM() {
+  zle reset-prompt
+}
+
 function zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/--command--}/(main|viins)/}"
-    RPS1="%F{magenta}$VIMODE ${gc}"
-    zle reset-prompt
+  VIMODE="${${KEYMAP/vicmd/--command--}/(main|viins)/}"
+  RPS1="%F{magenta}$VIMODE ${gc}"
+  zle reset-prompt
 }
 
 function accept_line {
-    VIMODE=''
-    zle doprompt
-    builtin zle .accept-line
+  VIMODE=''
+  zle doprompt
+  builtin zle .accept-line
 }
+
 zle -N accept_line
 bindkey -M vicmd "^M" accept_line
 
 zle -N zle-keymap-select
 
-# }}}
+# Get the start time of the command
+function preexec() {
+  cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
+}
 
-# verbose copy and move without correction {{{
-alias mv="nocorrect mv -v"
-alias cp="nocorrect cp -v"
-alias sudo="nocorrect sudo"
+# Output total execution
+function precmd() {
+  if (($+cmd_start_time)); then
+    local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
+    let local "elapsed = ${stop} - ${cmd_start_time}"
+    ETIME=`printf "%0.4fs" ${elapsed}`
+  fi
+}
 # }}}
 
 # COMPLETION {{{
@@ -208,66 +202,7 @@ bindkey "\e[B" down-line-or-beginning-search
 
 # }}}
 
-# UNFOUND COMMAND {{{
+# UNFOUND COMMAND
 function command_not_found_handler(){echo $fg[red]"Error: Command '$fg[yellow]$1\033[0m$fg[red]' not found."}
-# }}}
 
-# ###-begin-npm-completion-###
-# #
-# # npm command completion script
-# #
-# # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# # Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-# #
-#
-# if type complete &>/dev/null; then
-#   _npm_completion () {
-#     local words cword
-#     if type _get_comp_words_by_ref &>/dev/null; then
-#       _get_comp_words_by_ref -n = -n @ -w words -i cword
-#     else
-#       cword="$COMP_CWORD"
-#       words=("${COMP_WORDS[@]}")
-#     fi
-#
-#     local si="$IFS"
-#     IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-#                            COMP_LINE="$COMP_LINE" \
-#                            COMP_POINT="$COMP_POINT" \
-#                            npm completion -- "${words[@]}" \
-#                            2>/dev/null)) || return $?
-#     IFS="$si"
-#   }
-#   complete -o default -F _npm_completion npm
-# elif type compdef &>/dev/null; then
-#   _npm_completion() {
-#     local si=$IFS
-#     compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-#                  COMP_LINE=$BUFFER \
-#                  COMP_POINT=0 \
-#                  npm completion -- "${words[@]}" \
-#                  2>/dev/null)
-#     IFS=$si
-#   }
-#   compdef _npm_completion npm
-# elif type compctl &>/dev/null; then
-#   _npm_completion () {
-#     local cword line point words si
-#     read -Ac words
-#     read -cn cword
-#     let cword-=1
-#     read -l line
-#     read -ln point
-#     si="$IFS"
-#     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-#                        COMP_LINE="$line" \
-#                        COMP_POINT="$point" \
-#                        npm completion -- "${words[@]}" \
-#                        2>/dev/null)) || return $?
-#     IFS="$si"
-#   }
-#   compctl -K _npm_completion npm
-# fi
-# ###-end-npm-completion-###
-#
 # vim: fdm=marker
