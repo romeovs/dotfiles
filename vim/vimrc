@@ -185,6 +185,10 @@ set foldtext=FoldText()
 " map keys <<
 let mapleader = "\<space>"
 
+imap § <esc>
+vmap § <esc>
+cmap § <esc>
+
 " escape with jkl
 imap jkl <esc>
 
