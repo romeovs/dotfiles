@@ -9,7 +9,7 @@ alias ks="ls"
 # quit easily
 alias q=" exit"
 alias :q=" q"
-alias qa=" tmux kill-session"
+alias q:=" q"
 alias quit=" q"
 
 # system utilities
@@ -18,31 +18,14 @@ alias cp="nocorrect cp -v"
 alias sudo="nocorrect sudo"
 alias df="df -H"
 alias mkdir="mkdir -p -v"
-alias e="vim"
+alias e="${EDITOR}"
 alias grep="grep --color=auto"
 
 # tex live
 alias tlmgr="sudo tlmgr"
 
-# racket
-alias csi="csi -q -include-path '/Users/romeovs/Documents/vub/algoritmen en datastructuren/wpo/code'"
-alias rkt="rlwrap /Applications/Racket\ v6.1.1/bin/racket -S /Users/romeovs/Documents/vub/Programmeerproject\ II/src"
-alias scm="rlwrap /Applications/Racket\ v6.1.1/bin/plt-r5rs"
-
 # tex
 alias latexpre='latex -ini -job-name="preamble" "&latex preamble.pre\dump"'
-
-# compilers
-alias gcc='gcc -std=c++11'
-
-# haskell highlighting
-hhl(){
-    $@ | hhl.sh
-}
-alias ghc="hhl ghc"
-alias hoogle="hhl hoogle"
-alias pf="hhl pointfree"
-alias upf="hhl pointful"
 
 # auto sudoedit when file is not editable in vim
 # alias e="$EDITOR"
@@ -52,9 +35,6 @@ function fixup() {
   git commit --fixup="$1"
 }
 
-# node
-alias babel-node="babel-node --harmony" # --stage 0 --blacklist 'spec.functionName'"
-
 # open a file / folder
 # defaults to opening current dir
 function o {
@@ -62,30 +42,14 @@ function o {
   open $folder
 }
 
-# cd into vub
-# requires ffind
-export VUB_PATH="$HOME/Documents/vub/"
-function vub() {
-  cd $VUB_PATH
-  if [ $# -gt 0 ]; then
-    if [ $# -eq 2 ]; then
-      DIR=$(ffind -S "$2" -t d | grep -i "$1" | head -n 1)
-    else
-      DIR=$(ffind -S "$1" -t d | head -n 1)
-    fi
-    echo "vub/"${DIR#./}
-    if [ -d "$DIR" ]; then
-      cd "$DIR"
-    else
-      echo $fg[red]"\033[4mError\033[0m: vub directory '\033[35m$1\033[0m' does not exist."
-    fi
-  fi
-}
-
+# copy a file to clipboard
 function copy() {
   cat $1 | pbcopy
 }
 
+# send tcp packet to port on host
+# eg.
+#   $ tcp localhost 3000 foo
 function tcp () {
   local host="$1"
   local port="$2"
@@ -94,14 +58,12 @@ function tcp () {
   echo "$@" | nc $host $port
 }
 
+# compress a file or folder
 function compress {
   tar zcvf "$1.tar.gz" "$1"
 }
 
-function share () {
-}
-
-transfer() {
+function transfer() {
   if [ $# -eq 0 ]; then
     echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md";
     return 1;

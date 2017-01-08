@@ -3,15 +3,11 @@
 # initialize homerun
 source ${XDG_CONFIG_HOME}/homerun/initialize
 
-hash -d ttn=$TTNROOT
-hash -d vub=~/Documents/vub/
-
 source ${XDG_CONFIG_HOME}/zsh/antigen.zsh
 antigen bundle romeovs/zsh-plugin-gulp
 antigen apply
 
 # source aliases
 source ${XDG_CONFIG_HOME}/zsh/aliases
-
 
 # vim: ft=zsh fdm=marker

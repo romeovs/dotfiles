@@ -1,6 +1,4 @@
-# needs to be done here instead of zshenv to prevent /etc/profile from
-# overwriting it
-# export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
+# needs to be done here instead of zshenv to prevent /etc/profile from overwriting it
 export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
 
 export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
@@ -98,7 +96,9 @@ RPS1="${vim_mode}"' ${return_code} '"${last_time} ${curr_time}"
 TMOUT=1
 
 TRAPALRM() {
-  zle reset-prompt
+  if [ "$WIDGET" != "expand-or-complete" ]; then
+    zle reset-prompt
+  fi
 }
 
 function zle-keymap-select {
@@ -130,8 +130,6 @@ function preexec() {
   cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
 }
 
-typeset -A host_repr
-
 # Output total execution
 function precmd() {
   if (($+cmd_start_time)); then
@@ -143,9 +141,15 @@ function precmd() {
 }
 # }}}
 
+# UNFOUND COMMAND {{{
+function command_not_found_handler(){
+  print -P "%F{red}Error: Command '%F{yellow}$1%F{red}' not found."
+}
+# }}}
+
 # COMPLETION {{{
-# autoload -U compinit && compinit
-# autoload -U compinstall
+autoload -U compinit && compinit
+autoload -U compinstall
 
 # zmodload -i zsh/complist
 setopt hash_list_all            # hash everything before completion
@@ -155,38 +159,37 @@ setopt complete_in_word         # allow completion from within a word/phrase
 setopt correct                  # spelling correction for commands
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
 
-## use caching
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path $HOME/.cache/zsh/cache
+# use caching
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $HOME/.cache/zsh/cache/completion
 
-## use colors
+zstyle ':completion:*' force-list on
+
+# use colors
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' list-prompt '%S%F{black}At %p: Hit TAB for more, or the character to insert%s%f'
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
-zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
-zstyle ':completion:*:processes' command 'ps -axw'
-zstyle ':completion:*:processes-names' command 'ps -awxho command'
+zstyle ':completion:*' select-prompt '%S%F{black}Scrolling active: current selection at %p%s%f'
+zstyle ':completion:*' select-scroll 3
 
-## completion Styles
+# kill completion
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-## list of completers to use
+# list of completers to use
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 
-## allow one error for every three characters typed in approximate completer
+# allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
 
-## insert all expansions for expand completer
+# insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
-
 
 # completion sections styling
 zstyle ':completion:*:messages' format $'\e[00;31m%d'
 
-
 zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
 
-## formatting and messages
+# formatting and messages
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:messages' format '%F{blue}'
 zstyle ':completion:*:warnings' format '%F{red}No matches for: "%d"'
@@ -194,31 +197,19 @@ zstyle ':completion:*:corrections' format '%F{blue}%d%b'
 zstyle ':completion:*:descriptions' format '%F{yellow}%d%b'
 zstyle ':completion:*' group-name ''
 
-## match uppercase from lowercase
+# match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ## offer indexes before parameters in subscripts
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
-## Filename suffixes to ignore during completion (except after rm command)
+# Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*?.swp' '*?.swo'
 
-## Ignore tex-in-betweeners for vim completion
+# Ignore tex-in-betweeners for vim completion
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.pdf' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.fls' '*?.dpth' '*?.pdf' '*?.EXE' '*?.OBJ' '*?.o' '*?.hi'
 zstyle ':completion:*:*:mupdf:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
 zstyle ':completion:*:*:zathura:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
-
-# Use beginning of line to do history search
-autoload up-line-or-beginning-search
-autoload down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "\e[A" up-line-or-beginning-search
-bindkey "\e[B" down-line-or-beginning-search
-
 # }}}
-
-# UNFOUND COMMAND
-function command_not_found_handler(){echo $fg[red]"Error: Command '$fg[yellow]$1\033[0m$fg[red]' not found."}
 
 # vim: fdm=marker
