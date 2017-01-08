@@ -76,11 +76,11 @@ hi SpellBad         ctermbg=none    ctermfg=red     cterm=underline
 hi SpellCap         ctermbg=none    ctermfg=red     cterm=underline
 hi SpellRare        ctermbg=none    ctermfg=green   cterm=underline
 hi SpellLocal       ctermbg=none    ctermfg=blue    cterm=underline
-hi ErrorMsg         ctermfg=red     ctermbg=black
-hi WarningMsg       ctermfg=red     ctermbg=black
-hi MoreMsg          ctermfg=yellow  ctermbg=black
-hi ModeMsg          ctermfg=green   ctermbg=black
-hi Question         ctermfg=green   ctermbg=black
+hi ErrorMsg         ctermfg=red     ctermbg=none
+hi WarningMsg       ctermfg=red     ctermbg=none
+hi MoreMsg          ctermfg=yellow  ctermbg=none
+hi ModeMsg          ctermfg=green   ctermbg=none
+hi Question         ctermfg=green   ctermbg=none
 
 hi Include          ctermfg=95      ctermbg=none
 
