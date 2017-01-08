@@ -19,7 +19,6 @@ call plug#begin(expand('$VIM_HOME/bundle/'))
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
-Plug 'tpope/vim-surround'         " mappings to work with ' ( etc
 Plug 'tpope/vim-repeat'           " repeat more stuff
 Plug 'vim-scripts/matchit.zip'         " better matching with %
 Plug 'godlygeek/tabular'          " table alignment
