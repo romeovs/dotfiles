@@ -13,8 +13,9 @@ alias qa=" tmux kill-session"
 alias quit=" q"
 
 # system utilities
-alias cp="cp -v"
-alias mv="mv -v"
+alias mv="nocorrect mv -v"
+alias cp="nocorrect cp -v"
+alias sudo="nocorrect sudo"
 alias df="df -H"
 alias mkdir="mkdir -p -v"
 alias e="vim"
