@@ -78,16 +78,22 @@ unsetopt CDABLE_VARS        # if location for cd command is not there try to put
 # PROMPTS {{{
 autoload -U $XDG_CONFIG_HOME/zsh/functions/*
 setopt prompt_subst
-local gc="%(?, ,%F{black}%? %F{red}!%b%f)"
-local jb="%(1j,_, )"
-PS1='%F{yellow}|%F{black}%\[%F{red}%1c%F{black}%\]$ %f%b'
+return_code_enabled='%(?, ,%F{red}%U%?%f%u)'
+return_code_disabled=
+return_code=$return_code_disabled
+local curr_path='%F{black}[%F{red}%1c%F{black}]%f'
+local sep='%F{black}$ %f'
+local vim_mode='%F{yellow}${VIMODE}%f'
+local last_time='%F{magenta}${ETIME}%f'
+local curr_time='%F{black}%D{%L:%M:%S %p}'
+local start='%F{blue}|%f'
 
-PS2='%B%F{black}%_> %f%b'
-RPS2='%B%F{black} ... %f%b'
-PS3="%F{blue} ?# %b"
+PS1='${start}${curr_path}${sep}'
+PS2='%F{black}%_> %f'
+RPS2='%F{black} ... %f'
+PS3='%F{blue} ?# %f'
 
-RPS1='%F{magenta}$VIMODE ${gc} %F{magenta}${ETIME} %F{black}[%D{%L:%M:%S %p}]%f%b'
-REPORTTIME=1
+RPS1="${vim_mode}"' ${return_code} '"${last_time} ${curr_time}"
 
 TMOUT=1
 
@@ -96,26 +102,35 @@ TRAPALRM() {
 }
 
 function zle-keymap-select {
-  VIMODE="${${KEYMAP/vicmd/--command--}/(main|viins)/}"
-  RPS1="%F{magenta}$VIMODE ${gc}"
+  VIMODE="${${KEYMAP/vicmd/--cmd--}/(main|viins)/}"
   zle reset-prompt
 }
 
 function accept_line {
   VIMODE=''
+  ETIME=''
+  if [[ -z $BUFFER ]]; then
+    return_code=$return_code_disabled
+  else
+    return_code=$return_code_enabled
+  fi
   zle doprompt
-  builtin zle .accept-line
+  zle accept-line
 }
 
 zle -N accept_line
 bindkey -M vicmd "^M" accept_line
+bindkey "^M" accept_line
 
 zle -N zle-keymap-select
 
 # Get the start time of the command
 function preexec() {
+  last_status='${def_last_status}'
   cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
 }
+
+typeset -A host_repr
 
 # Output total execution
 function precmd() {
@@ -123,6 +138,7 @@ function precmd() {
     local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
     let local "elapsed = ${stop} - ${cmd_start_time}"
     ETIME=`printf "%0.4fs" ${elapsed}`
+    unset cmd_start_time
   fi
 }
 # }}}
