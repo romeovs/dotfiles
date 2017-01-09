@@ -4,27 +4,27 @@ export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils
 export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
 export LS_COLORS="di=00;31:ex=00;37:mi=00;41;30:tw=00;33"
 
-preexec_functions=
+preexec_functions=()
 
 function preexec() {
-  for fn in `echo $preexec_functions`; do
+  for fn in $preexec_functions; do
     $fn "$@"
   done
 }
 
-precmd_functions=
+precmd_functions=()
 
 function precmd() {
-  for fn in `echo $precmd_functions`; do
+  for fn in $precmd_functions; do
     $fn "$@"
   done
 }
 
 chpwd_functions=
-accept_line_functions=
+accept_line_functions=()
 
 function accept_line {
-  for fn in `echo $accept_line_functions`; do
+  for fn in $accept_line_functions; do
     $fn "$@"
   done
   zle accept-line
@@ -148,7 +148,7 @@ function preexec_get_start () {
   cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
 }
 
-preexec_functions+=' preexec_get_start'
+preexec_functions+='preexec_get_start'
 
 
 # Output total execution
@@ -161,7 +161,7 @@ function precmd_set_end() {
   fi
 }
 
-precmd_functions+=' precmd_set_end'
+precmd_functions+='precmd_set_end'
 
 # reset some stuff on accept_line
 function accept_line_reset {
@@ -175,7 +175,7 @@ function accept_line_reset {
   zle doprompt
 }
 
-accept_line_functions+=' accept_line_reset'
+accept_line_functions+='accept_line_reset'
 # }}}
 
 # UNFOUND COMMAND {{{
