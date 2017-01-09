@@ -1,4 +1,4 @@
-# needs to be done here instead of zshenv to prevent /etc/profile from overwriting it
+# neeojjjjjs to be done here instead of zshenv to prevent /etc/profile from overwriting it
 export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/texbin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.bin:/usr/local/share/npm/bin:$PATH"
 
 export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
@@ -103,7 +103,14 @@ unsetopt CDABLE_VARS        # if location for cd command is not there try to put
 # PROMPTS {{{
 autoload -U $XDG_CONFIG_HOME/zsh/functions/*
 setopt prompt_subst
-local return_code_enabled='%130(?,%F{yellow}^C%f,) %(?, ,%F{red}%U%?%f%u)'
+local return_codes=
+for sig in `kill -l`; do
+  local n=`kill -l $sig`
+  let local="code = ${n} + 128"
+  return_codes+="%${code}(?,%F{yellow}${sig}%f,)"
+done
+
+local return_code_enabled="${return_codes}"' %(?, ,%F{red}%U%?%f%u)'
 local return_code_disabled=
 local return_code=$return_code_disabled
 local curr_path='%F{black}[%F{red}%1c%F{black}]%f'
