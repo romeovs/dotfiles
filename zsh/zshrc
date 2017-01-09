@@ -73,6 +73,10 @@ unsetopt BG_NICE            # lower priority of bg processes
 unsetopt EXTENDED_GLOB      # treats # ~ and ^  as part of filename patterns
 
 # history {{{
+HISTFILE=$HOME/.cache/zsh/zhistory
+HISTSIZE=100000
+SAVEHIST=100000
+
 setopt HIST_IGNORE_DUPS     # ignore duplicates on history expansion
 setopt HIST_REDUCE_BLANKS   # reduce unnecessary blank spaces in history
 setopt HIST_IGNORE_SPACE    # ignore commands if they start with a space
@@ -81,10 +85,7 @@ setopt HIST_NO_STORE        # don't store 'history' and 'fc' commands
 setopt APPEND_HISTORY       # just append instead of overwrite
 setopt INC_APPEND_HISTORY   # append after execution in stead of after killing of shell
 setopt EXTENDED_HISTORY     # puts timestamps in the history
-unsetopt SHARE_HISTORY      # explicitly share history across running sessions
-HISTFILE=$HOME/.cache/zsh/zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+setopt SHARE_HISTORY        # explicitly share history across running sessions
 # }}}
 
 # directories {{{
