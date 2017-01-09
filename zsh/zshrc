@@ -4,9 +4,37 @@ export PATH="${HOME}/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils
 export FPATH="${HOME}/.config/zsh/functions:${FPATH}"
 export LS_COLORS="di=00;31:ex=00;37:mi=00;41;30:tw=00;33"
 
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
+preexec_functions=
+
+function preexec() {
+  for fn in `echo $preexec_functions`; do
+    $fn "$@"
+  done
+}
+
+
+precmd_functions=
+
+function precmd() {
+  for fn in `echo $precmd_functions`; do
+    $fn "$@"
+  done
+}
+
+chpwd_functions=
+accept_line_functions=
+
+function accept_line {
+  for fn in `echo $accept_line_functions`; do
+    $fn "$@"
+  done
+  zle accept-line
+}
+
+zle -N accept_line
+bindkey -M vicmd "^M" accept_line
+bindkey "^M" accept_line
+
 
 # KEYBINDS {{{
 KEYTIMEOUT=1
@@ -101,12 +129,36 @@ TRAPALRM() {
   fi
 }
 
+# set vim mode with keymap select
 function zle-keymap-select {
   VIMODE="${${KEYMAP/vicmd/--cmd--}/(main|viins)/}"
   zle reset-prompt
 }
+zle -N zle-keymap-select
 
-function accept_line {
+
+# Get the start time of the command
+function preexec_get_start () {
+  cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
+}
+
+preexec_functions+=' preexec_get_start'
+
+
+# Output total execution
+function precmd_set_end() {
+  if (($+cmd_start_time)); then
+    local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
+    let local "elapsed = ${stop} - ${cmd_start_time}"
+    ETIME=`printf "%0.4fs" ${elapsed}`
+    unset cmd_start_time
+  fi
+}
+
+precmd_functions+=' precmd_set_end'
+
+# reset some stuff on accept_line
+function accept_line_reset {
   VIMODE=''
   ETIME=''
   if [[ -z $BUFFER ]]; then
@@ -115,30 +167,9 @@ function accept_line {
     return_code=$return_code_enabled
   fi
   zle doprompt
-  zle accept-line
 }
 
-zle -N accept_line
-bindkey -M vicmd "^M" accept_line
-bindkey "^M" accept_line
-
-zle -N zle-keymap-select
-
-# Get the start time of the command
-function preexec() {
-  cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
-}
-
-# Output total execution
-function precmd() {
-  z_precmd
-  if (($+cmd_start_time)); then
-    local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
-    let local "elapsed = ${stop} - ${cmd_start_time}"
-    ETIME=`printf "%0.4fs" ${elapsed}`
-    unset cmd_start_time
-  fi
-}
+accept_line_functions+=' accept_line_reset'
 # }}}
 
 # UNFOUND COMMAND {{{
