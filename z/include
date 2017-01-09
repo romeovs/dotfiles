@@ -1,12 +1,14 @@
 function z () {
   . `brew --prefix`/etc/profile.d/z.sh
 
-  function precmd () {
+  function z_precmd () {
     z --add "$(pwd -P)"
   }
 
   _z "$@"
 }
+
+function z_precmd () {}
 
 alias j='z'
 alias zr='z -r'

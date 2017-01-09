@@ -126,12 +126,12 @@ zle -N zle-keymap-select
 
 # Get the start time of the command
 function preexec() {
-  last_status='${def_last_status}'
   cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
 }
 
 # Output total execution
 function precmd() {
+  z_precmd
   if (($+cmd_start_time)); then
     local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
     let local "elapsed = ${stop} - ${cmd_start_time}"
