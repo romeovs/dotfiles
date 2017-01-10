@@ -37,6 +37,9 @@ bindkey "^M" accept_line
 
 # KEYBINDS {{{
 KEYTIMEOUT=1
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+
 typeset -g -A key
 bindkey -v                                      # vi keybinding
 bindkey -M viins '^?' backward-delete-char      # but with normal backspace
@@ -51,8 +54,8 @@ bindkey '^G' vi-find-prev-char
 bindkey '   ' complete-word # complete on tab, leave expansion to _expand
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^R' vi-change-whole-line
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-beginning-search-backward-end
+bindkey '^[[B' history-beginning-search-forward
 bindkey '^f' vi-forward-word
 
 
