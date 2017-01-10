@@ -1,3 +1,5 @@
+export _Z_DATA="${XDG_CACHE_HOME}/z/data"
+
 function z () {
   . `brew --prefix`/etc/profile.d/z.sh
 
@@ -14,5 +16,14 @@ function zl () {
   z $@
   ls -1HhFplN --color --group-directories-first --time-style='+%Y-%m-%d %H:%M:%S' --hide='Icon?' --hide='.DS_Store' --ignore='lost+found'
 }
+
+function _z_zsh_tab_completion() {
+  . `brew --prefix`/etc/profile.d/z.sh
+  # tab completion
+  local compl
+  read -l compl
+  reply=(${(f)"$(_z --complete "$compl")"})
+}
+compctl -U -K _z_zsh_tab_completion z
 
 # vim: ft=zsh

@@ -1,1 +1,2 @@
 brew install z
+mkdir -p "${XDG_CACHE_HOME}/z"
