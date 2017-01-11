@@ -29,9 +29,10 @@ Plug 'terryma/vim-expand-region'  " handy expansion of region
 " filetype plugins <<
 " golang
 Plug 'fatih/vim-go'
-let g:auto_type_info = 1
-" let g:go_fmt_experimental = 1
-let g:go_template_autocreate = 0
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+let g:go_updatetime = 300
+let g:go_fmt_command = "goimports"
 
 " haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
