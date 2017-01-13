@@ -3,11 +3,15 @@
 # initialize homerun
 source ${XDG_CONFIG_HOME}/homerun/initialize
 
-source ${XDG_CONFIG_HOME}/zsh/antigen.zsh
-antigen bundle romeovs/zsh-plugin-gulp
-antigen apply
-
 # source aliases
 source ${XDG_CONFIG_HOME}/zsh/aliases
+
+local plugins="${XDG_CONFIG_HOME}/zsh/plugins.zsh"
+
+if [ -e "$plugins" ]; then
+  source ${XDG_CONFIG_HOME}/zsh/plugins.zsh
+else
+  echo "Warning: plugins not loaded"
+fi
 
 # vim: ft=zsh fdm=marker

@@ -2,6 +2,7 @@
 mkdir -p "${XDG_CACHE_HOME}/zsh/cache"
 
 brew install zsh ffind coreutils
+curl -s https://raw.githubusercontent.com/getantibody/installer/master/install | bash -s
 
 echo 'linking zshenv...'
 ln -sf "${PWD}/zshenv" "$HOME/.zshenv"
@@ -9,5 +10,7 @@ ln -sf "${PWD}/zshenv" "$HOME/.zshenv"
 # link local config files
 ln -sf "${PWD}/profile" "${PWD}/.zprofile"
 ln -sf "${PWD}/zshrc"   "${PWD}/.zshrc"
+
+antibody bundle < plugins.txt >> plugins.zsh
 
 # vim: ft=zsh
