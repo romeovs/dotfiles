@@ -1,0 +1,4 @@
+
+alias yarn='function () { yarn "$@" --no-emoji --no-progress }'
+
+# vim: ft=zsh

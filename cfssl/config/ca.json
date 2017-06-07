@@ -1,16 +1,16 @@
 {
   "CN": "TTN Dev CA",
   "key": {
-      "algo": "rsa",
-      "size": 2048
+    "algo": "rsa",
+    "size": 2048
   },
   "names": [
-      {
-          "C": "NL",
-          "L": "Amsterdam",
-          "O": "The Things Network",
-          "ST": "Noord-Holland",
-          "OU": "PKI Department"
-      }
+    {
+      "C": "NL",
+      "L": "Amsterdam",
+      "O": "The Things Network",
+      "ST": "Noord-Holland",
+      "OU": "PKI Department"
+    }
   ]
 }

@@ -1,0 +1,15 @@
+brew cask install slack
+brew cask install gpgtools
+brew cask install soulseek
+brew cask install docker
+brew cask install vlc
+brew cask install chrome
+brew cask install firefox
+brew cask install whatsapp
+brew cask install spectacle
+
+
+brew cask install apptivate
+defaults write se.cocoabeans.apptivate TAShowStatusbarIcon 0
+
+brew install influxdb redis rabbitmq mosquitto mongodb

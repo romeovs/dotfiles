@@ -28,6 +28,10 @@
   track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"
   amend = commit --amend --no-edit
 
+[diff]
+  compactionHeuristic = true
+  indentHeuristic = true
+
 [color]
   branch = auto
   diff = auto

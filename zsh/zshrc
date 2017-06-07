@@ -74,8 +74,9 @@ setopt REC_EXACT            # in completion recognize exact matches even when am
 setopt AUTO_LIST            # list all possibiliies in ambigous completion
 unsetopt BG_NICE            # lower priority of bg processes
 unsetopt EXTENDED_GLOB      # treats # ~ and ^  as part of filename patterns
+# }}}
 
-# history {{{
+# HISTORY {{{
 HISTFILE=$HOME/.cache/zsh/zhistory
 HISTSIZE=100000
 SAVEHIST=100000
@@ -88,10 +89,10 @@ setopt HIST_NO_STORE        # don't store 'history' and 'fc' commands
 setopt APPEND_HISTORY       # just append instead of overwrite
 setopt INC_APPEND_HISTORY   # append after execution in stead of after killing of shell
 setopt EXTENDED_HISTORY     # puts timestamps in the history
-setopt SHARE_HISTORY        # explicitly share history across running sessions
+# setopt SHARE_HISTORY        # explicitly share history across running sessions
 # }}}
 
-# directories {{{
+# DIRECTORIES {{{
 setopt AUTO_PUSHD           # automatically save where you were
 setopt AUTO_CD              # when command is not found interpret as cd command
 setopt PUSHD_IGNORE_DUPS    # ignore duplicates with pushd
@@ -101,7 +102,6 @@ setopt PUSHD_TO_HOME        # 'pushd' equals 'pushd $HOME'
 setopt AUTO_PARAM_SLASH     # add slash after directory complete
 setopt GLOB_DOTS            # leading . in filenames are unnecessary
 unsetopt CDABLE_VARS        # if location for cd command is not there try to put ~/ in front
-# }}}
 # }}}
 
 # PROMPTS {{{
@@ -251,6 +251,7 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old'
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.pdf' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.fls' '*?.dpth' '*?.pdf' '*?.EXE' '*?.OBJ' '*?.o' '*?.hi'
 zstyle ':completion:*:*:mupdf:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
 zstyle ':completion:*:*:zathura:*:*files' ignored-patterns '*?.aux' '*?.log' '*?.toc' '*?.bak' '*?.bib' '*?.auxlock' '*?.out' '*?.run.xml' '*?.pyg' '*?.bbl' '*?.blg' '*?.tex' '*?.gnuplot' '*?.table' '*?.gz' '*?.fmt' '.DS_Store' '*?.fdb_latexmk' '*?.dvi' '*?.idx' '*?.ilg' '*?.ind' '*?.dpth'
+
 # }}}
 
 # vim: fdm=marker

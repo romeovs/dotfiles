@@ -1,1 +1,2 @@
 :set prompt "\ESC[1;30mλ\ESC[m \ESC[1m> \ESC[m"
+:set -XOverloadedStrings

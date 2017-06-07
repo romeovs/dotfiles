@@ -24,12 +24,12 @@ log () {
 connect () {
   # $HERE/change.applescript creep
   $HERE/change.applescript "term big"
-  /usr/local/bin/blueutil power 1
+  # /usr/local/bin/blueutil power 1
 }
 
 disconnect () {
   $HERE/change.applescript term
-  /usr/local/bin/blueutil power 0
+  # /usr/local/bin/blueutil power 0
 }
 
 connected () {

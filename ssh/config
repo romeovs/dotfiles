@@ -7,103 +7,60 @@ Host github
   Hostname github.com
   User git
 
-Host rbp
-  Hostname www.romeovansnick.be
-  Port 6102
-  User romeovs
-
-Host nuc
-  Hostname dns.romeovansnick.be
-  Port 6103
-  User romeovs
-
-Host mailserver
-  Hostname mail.datgoedgoed.be
-  User ec2-user
-  IdentityFile ~/.ssh/mail.pem
-
-host ec2
-  Hostname 52.50.117.84
-  User romeo
-
-host ec2-root
-  Hostname 52.50.117.84
-  User root
-  IdentityFile ~/.ssh/dokkuarch.pem
-
 Host gitlab.com
+  User romeovs
   RSAAuthentication yes
   IdentityFile ~/.ssh/gitlab
-  User romeovs
-
-Host ttn-staging
-  Hostname s01.staging.thethings.network
-  User ubuntu
-  IdentityFile ~/.ssh/romeovs_rsa
-
-Host ttn-dashboard
-  # Hostname 40.114.249.243
-  Hostname 40.115.44.103
-  # Hostname staging.thethingsnetwork.org
-  User ubuntu
-  IdentityFile ~/.ssh/romeovs_rsa
-
-Host ttn-forum
-  Hostname forum.thethingsnetwork.org
-  User romeo
-  IdentityFile ~/.ssh/ttn_forum
-
-Host ttn-shop
-  Hostname shop.thethingsnetwork.com
-  User root
-  IdentityFile ~/.ssh/ttn_shop
-
-Host ttn-account
-  Hostname 40.68.168.181
-  User ubuntu
-  IdentityFile ~/.ssh/ttn_id_rsa
-
-Host ttn-account-preview
-  Hostname 13.95.238.35
-  User ubuntu
-  IdentityFile ~/.ssh/ttn_id_rsa
-
-Host ttn-website
-  Hostname thethingsnetwork.org
-  User ubuntu
-  IdentityFile ~/.ssh/ttn_id_rsa
-
-Host ttn-preview
-  Hostname preview.thethingsnetwork.org
-  User ubuntu
-  IdentityFile ~/.ssh/ttn_id_rsa
-
-
-Host ttn-console-preview
-  Hostname preview.console.thethingsnetwork.org
-  User ubuntu
-  IdentityFile ~/.ssh/id_dash_prev
-
-Host ttn-console
-  Hostname console.thethingsnetwork.org
-  User ubuntu
-  IdentityFile ~/.ssh/id_dash_prev
-
-
-Host ttn-account-v1
-  Hostname 13.81.58.55
-  User romeo
-  IdentityFile ~/.ssh/id_ttn_account_v1
-
-Host ttn-account-v2
-  Hostname 104.40.216.89
-  User romeo
-  IdentityFile ~/.ssh/id_ttn_account_v2
 
 Host do
   Hostname 146.185.140.158
   User romeovs
   IdentityFile ~/.ssh/id_ocean
 
+Host gateway
+  Hostname 51.140.114.177
+  User romeo
+  IdentityFile ~/.ssh/ttn_id_rsa
+
+Host devbak
+  Hostname dev.thethings.network
+  User romeo
+  IdentityFile ~/.ssh/ttn_id_rsa
+
+Host ttn-console
+  Hostname console.thethingsnetwork.org
+  User ubuntu
+  IdentityFile ~/.ssh/ttn_id_rsa
+
+Host ttn-account-v2
+  Hostname account.thethingsnetwork.org
+  User romeo
+  IdentityFile ~/.ssh/ttn_id_rsa
+
+Host ttn-staging
+  Hostname s01.staging.thethings.network
+  User ubuntu
+  IdentityFile ~/.ssh/romeovs_rsa
+
+Host integrations.eu.thethings.network
+  User romeo
+  IdentityFile ~/.ssh/ttn_id_rsa
+
+Host ttn-dashboard
+  Hostname 40.115.44.103
+  User ubuntu
+  IdentityFile ~/.ssh/romeovs_rsa
+
+# Host rbp
+#   Hostname www.romeovansnick.be
+#   Port 6102
+#   User romeovs
+
+# Host nuc
+#   Hostname 192.168.2.1
+#   IdentityFile ~/.ssh/id_rsa
+#   # Hostname dns.romeovansnick.be
+#   Port 6103
+#   User romeovs
 
 # vim: ft=sshconfig

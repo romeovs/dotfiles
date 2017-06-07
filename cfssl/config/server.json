@@ -1,20 +1,14 @@
 {
   "CN": "TTN Dev Certificate",
-  "hosts": [
+  "sans": [
     "dev.ttn.dash",
-    "dev.ttn.auth"
+    "dev.ttn.auth",
+    "account.ttn.dev",
+    "console.ttn.dev",
+    "assets.console.ttn.dev"
   ],
   "key": {
     "algo": "rsa",
     "size": 2048
-  },
-  "names": [
-    {
-        "C": "NL",
-        "L": "Amsterdam",
-        "O": "The Things Network",
-        "ST": "Noord-Holland",
-        "OU": "PKI Department"
-    }
-  ]
+  }
 }
