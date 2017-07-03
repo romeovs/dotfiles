@@ -63,34 +63,4 @@ function compress {
   tar zcvf "$1.tar.gz" "$1"
 }
 
-function transfer() {
-  if [ $# -eq 0 ]; then
-    echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md";
-    return 1;
-  fi
-
-  if [ -d "$1" ]; then
-    local tarred="$1.tar"
-    if [ ! -r "$tarred" ]; then
-      echo "tarring..."
-      tar cvf "$tarred" "$1"
-    fi
-    transfer "$tarred"
-    return $?
-  fi
-
-  echo "uploading..."
-  tmpfile=$( mktemp -t transferXXX )
-  if tty -s; then
-    basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
-    curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile;
-  else
-    curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile
-  fi
-  url=`cat "$tmpfile"`
-  echo "$url/).zip" | sed "s|https://transfer.sh/|https://transfer.sh/(/|"
-  rm -f $tmpfile
-}
-
-
 # vim: ft=zsh fdm=marker
