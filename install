@@ -34,9 +34,6 @@ brew install node flow
 # install xquartz
 brew cask install xquartz
 
-# install gitter
-brew cask install gitter
-
 # install transmission
 brew cask install transmission
 

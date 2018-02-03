@@ -29,10 +29,14 @@ Plug 'terryma/vim-expand-region'  " handy expansion of region
 " filetype plugins <<
 " golang
 Plug 'fatih/vim-go'
+Plug 'godoctor/godoctor.vim'
 let g:go_auto_type_info = 0
 let g:go_auto_sameids = 0
 let g:go_updatetime = 300
 let g:go_fmt_command = "goimports"
+
+" fish
+Plug 'dag/vim-fish'
 
 " haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
@@ -47,6 +51,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
+Plug 'posva/vim-vue'
+Plug 'ruanyl/vim-fixmyjs'
 
 " css
 Plug 'JulesWang/css.vim', { 'for': [ 'css', 'stylus' ] }
@@ -73,6 +79,9 @@ Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 
 " octave
 Plug 'vim-scripts/octave.vim', { 'for': 'octave' }
+
+" resonml
+Plug 'reasonml-editor/vim-reason'
 
 " >>
 
@@ -109,7 +118,7 @@ set list
 " >>
 
 " wrapping <<
-set textwidth=80        " wrap to 80
+" set textwidth=80        " wrap to 80
 set formatoptions-=t    " don't wrap automatically
 set nowrap              " no line wrapping
 " >>
@@ -124,6 +133,7 @@ set ignorecase  " ignore case in search
 " drawing and shell <<
 set vb t_vb=            " disable visual bells
 set mouse=n             " enable mouse in normal mode
+set guicursor=
 " >>
 
 " conceal and fill <<
@@ -367,9 +377,9 @@ imap <F7> <C-o>:call MySpellLang()<CR
 " >>
 
 " slime <<
-Plug 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+" Plug 'jpalardy/vim-slime'
+" let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 " >>
 
 " text obj <<
@@ -412,13 +422,27 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/echodoc'
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#pointer = 1
-let g:deoplete#omni#input_patterns='[^.]:\w'
-
 set completeopt+=noinsert
+" set completeopt+=noselect
 set completeopt-=preview
- >>
+set shortmess+=c
+
+let g:python3_host_skip_check = 1
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#use_cache = 1
+
+let g:deoplete#omni_patters = {}
+let g:deoplete#omni#input_patterns = {}
+
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['member', 'omni', 'dictionary' ]
+
+" >>
 
 call plug#end()
 
