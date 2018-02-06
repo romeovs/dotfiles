@@ -73,6 +73,13 @@
   helper = osxkeychain
 
 [rerere]
-  enabled = 1
+  enabled = true
+
 [commit]
-	gpgsign = true
+  gpgsign = true
+
+[fetch]
+  prune = true
+
+[push]
+  followTags = true
