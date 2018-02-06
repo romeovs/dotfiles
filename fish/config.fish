@@ -2,7 +2,7 @@
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_CACHE_HOME $HOME/.cache
 
-set -x PATH /usr/local/opt/ruby/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin $PATH
+set -x PATH /usr/local/opt/python/libexec/bin /usr/local/opt/ruby/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin $PATH
 
 set -x GNUTERM X11
 set -x HOMEBREW_PREFIX `/usr/local/bin/brew --prefix`
@@ -44,9 +44,12 @@ alias cp "cp -v"
 alias sudo "sudo"
 alias df "df -H"
 alias mkdir "mkdir -p -v"
-alias vim "nvim -u /Users/romeo/.config/vim/vimrc -p"
+alias vim "env VIRTUAL_ENV= nvim -u /Users/romeo/.config/vim/vimrc -p"
 alias e "vim"
 alias grep "grep --color=auto"
+
+# fuck
+eval (thefuck --alias | tr '\n' ';')
 
 set fish_color_command none
 set fish_color_autosuggestion 444444
@@ -75,3 +78,7 @@ set fish_pager_color_completion
 set fish_pager_color_description b3a06d yellow
 set fish_pager_color_prefix white --bold
 set fish_pager_color_progress brwhite
+
+eval (python -m virtualfish)
+
+source $HOME/.config/fish/functions/change_virtual_env.fish

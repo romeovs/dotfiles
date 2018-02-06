@@ -1,3 +1,5 @@
+set -g sigs (kill -l)
+
 function fish_right_prompt --description "Write out the right prompt"
   set -l exit_code $status
 
@@ -12,13 +14,11 @@ function fish_right_prompt --description "Write out the right prompt"
   end
 
   # unix signal
-  for sig in (kill -l)
-    set -l n (kill -l $sig)
-    if [ $exit_code = (math $n + 128) ]
-      set_color yellow
-      printf " $sig"
-    end
-  end
+  set -l n (math $exit_code - 128)
+  set -l sig $sigs[$n]
+
+  set_color yellow
+  printf " $sig"
 
   # exit code
   if [ $exit_code != 0 ]
@@ -33,16 +33,27 @@ function fish_right_prompt --description "Write out the right prompt"
   end
 
   # git branch
-  if set branch (git_branch_name)
-    printf " "
-
+  if set -l branch (git_branch_name)
     set_color white
-    printf "("
+    printf " ("
 
     set_color normal
     echo $branch | sed "s|feature/|f.../|"
 
     set_color white
+    printf ")"
+
+    set_color normal
+  end
+
+  if set -q VIRTUAL_ENV
+    set_color brblue
+    printf  " ("
+
+    set_color blue
+    printf (basename $VIRTUAL_ENV)
+
+    set_color brblue
     printf ")"
 
     set_color normal
