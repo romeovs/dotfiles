@@ -1,14 +1,24 @@
 
 # ls
-alias ls="ls -1HhFp --color --group-directories-first --time-style='+%Y-%m-%d %H:%M:%S' --hide='Icon?' --hide='.DS_Store' --ignore='lost+found'"
-alias l="ls -lN"
-alias lsb="ls -Ssr"
+alias ls="ls -1HhFplN --color --group-directories-first --time-style='+%Y-%m-%d %H:%M:%S' --hide='Icon?' --hide='.DS_Store' --ignore='lost+found'"
+alias l="ls"
 alias la="ls -lA"
 alias ks="ls"
+alias ka="la"
+alias k="l"
+
+# docker-compose
+alias dc="docker-compose"
+alias dcup="docker-compose"
+alias dclup="docker-compose -f docker-compose.local.yml"
 
 # quit easily
 alias q=" exit"
+alias qa=" q"
 alias :q=" q"
+alias q:=" q"
+alias :qa=" q"
+alias :qa!=" q"
 alias q:=" q"
 alias quit=" q"
 
@@ -20,20 +30,6 @@ alias df="df -H"
 alias mkdir="mkdir -p -v"
 alias e="${EDITOR}"
 alias grep="grep --color=auto"
-
-# tex live
-alias tlmgr="sudo tlmgr"
-
-# tex
-alias latexpre='latex -ini -job-name="preamble" "&latex preamble.pre\dump"'
-
-# auto sudoedit when file is not editable in vim
-# alias e="$EDITOR"
-alias a="git add"
-alias c="git commit"
-function fixup() {
-  git commit --fixup="$1"
-}
 
 # open a file / folder
 # defaults to opening current dir

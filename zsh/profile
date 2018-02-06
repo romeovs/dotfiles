@@ -6,12 +6,4 @@ source ${XDG_CONFIG_HOME}/homerun/initialize
 # source aliases
 source ${XDG_CONFIG_HOME}/zsh/aliases
 
-local plugins="${XDG_CONFIG_HOME}/zsh/plugins.zsh"
-
-if [ -e "$plugins" ]; then
-  source ${XDG_CONFIG_HOME}/zsh/plugins.zsh
-else
-  echo "Warning: plugins not loaded"
-fi
-
 # vim: ft=zsh fdm=marker
