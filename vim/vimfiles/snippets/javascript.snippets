@@ -1,0 +1,65 @@
+
+
+snippet nice
+	dope
+
+snippet pts "propTypes"
+	static propTypes = [
+		${0}
+	]
+
+snippet state "state"
+	static state = [
+		${0}
+	]
+
+snippet pt "React.PropTypes."
+	React.PropTypes.${0}
+
+snippet cdm "componentDidMount"
+	componentDidMount() {
+		${0}
+	}
+
+snippet cwu "componentWillUnmount"
+	componentWillUnmount() {
+		${0}
+	}
+
+snippet cwm "componentWillMount"
+	componentWillMount() {
+		${0}
+	}
+
+snippet imp "import from"
+	import ${1:pkg} from '$1';
+
+snippet imp{ "import { } from"
+	import {
+		${1}
+	} from '${2}';
+
+snippet cn "className"
+	className='${1}' ${2}
+
+snippet gqls
+	{
+		name: '${1}'
+	, description: '${2}'
+	, fields() {
+			${3}
+		}
+	}
+#
+snippet gqlf
+	${1}: {
+		type: ${2}
+	, description: '${3}'
+	, args: {
+			${4}
+		}
+	, resolve() {
+			${5}
+		}
+	}
+# vim: noexpandtab foldmethod=marker

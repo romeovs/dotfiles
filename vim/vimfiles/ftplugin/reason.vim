@@ -1,0 +1,1 @@
+au BufWritePre *.re ReasonPrettyPrint

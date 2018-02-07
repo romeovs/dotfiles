@@ -1,0 +1,16 @@
+#!/bin/env sh
+
+brew install python3
+sudo gem install neovim
+pip3 install neovim
+
+# install neovim with brew
+brew tap neovim/neovim
+brew install --HEAD neovim
+
+vimdir="${PWD}/vimfiles"
+
+# set up cache folders
+mkdir -p $XDG_CACHE_HOME/nvim/{backup,swap,undo}
+
+# vim: ft=zsh
