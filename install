@@ -1,0 +1,47 @@
+
+# install brew
+if type brew &> /dev/null; then
+  echo 'brew already installed'
+else
+  echo 'installing homebrew...'
+  ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`
+fi
+
+
+# QUICKLOOK PLUGINS
+# adds colors to quicklook preview
+brew cask install qlcolorcode
+
+# add ql support for files w/o extension
+brew cask install qlstephen
+
+# add markdown support
+brew cask install qlmarkdown
+
+# add webp support
+brew cask install webpquicklook
+
+# shows image dimension and size in title
+brew cask install qlimagesize
+
+# SIMBL
+# needed for MouseTerm: https://bitheap.org/mouseterm/
+brew cask install easysimbl
+
+# NODE
+brew install node
+
+# install xquartz
+brew cask install xquartz
+
+# install transmission
+brew cask install transmission
+
+# we need ffmpeg
+brew install ffmpeg
+
+# install fonts
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
+
+# vim: ft=zsh
