@@ -8,7 +8,7 @@ set -x GNUTERM X11
 set -x HOMEBREW_PREFIX `/usr/local/bin/brew --prefix`
 set -x MANPATH $HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman $MANPATH
 
-set -x EDITOR "vim -p"
+set -x EDITOR 'env VIRTUAL_ENV= nvim -u /Users/romeo/.config/vim/vimrc -p'
 set -x PAGER "less"
 set -x LESS "-RI"
 set -x LESSHISTFILE "-"
@@ -47,11 +47,11 @@ alias mkdir "mkdir -p -v"
 alias grep "grep --color=auto"
 
 function vim --wraps vim
-  env VIRTUAL_ENV= nvim -u /Users/romeo/.config/vim/vimrc -p $argv
+  eval $EDITOR $argv
 end
 
 function e --wraps vim
-  vim $argv
+  eval $EDITOR $argv
 end 
 
 # fuck
