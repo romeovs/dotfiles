@@ -1,0 +1,20 @@
+
+alias add="git add"
+alias s="git status"
+
+function commit() {
+  local clobber=true
+  for i in "$@"; do
+    if [ "$i" = '-m' ]; then
+      local clobber=false
+    fi
+  done
+
+  if [ $clobber = true ]; then
+    git c "$@"
+  else
+    git commit "$@"
+  fi
+}
+
+# vim: ft=zsh
