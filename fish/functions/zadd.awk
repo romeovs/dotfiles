@@ -1,0 +1,1 @@
+/Users/romeo/.config/fisherman/z/functions/zadd.awk
