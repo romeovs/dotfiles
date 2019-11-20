@@ -1,4 +1,7 @@
-export EDITOR="nvim -u $XDG_CONFIG_HOME/vim/vimrc -p"
+echo "OK"
+export EDITOR="VIRTUAL_ENV= nvim -u $XDG_CONFIG_HOME/vim/vimrc -p"
+
 alias vim="$EDITOR"
-alias nvim="$EDITOR"
+alias e="vim"
+
 # vim: ft=zsh

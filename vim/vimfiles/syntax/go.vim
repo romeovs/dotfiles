@@ -1,0 +1,1 @@
+hi link goExtraType Normal

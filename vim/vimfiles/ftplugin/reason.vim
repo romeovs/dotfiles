@@ -1,1 +1,1 @@
-au BufWritePre *.re ReasonPrettyPrint
+" au BufWritePre *.re ReasonPrettyPrint

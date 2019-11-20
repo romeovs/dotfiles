@@ -38,7 +38,7 @@ hi Folded           ctermfg=236     ctermbg=black   cterm=bold,inverse
 hi Title            ctermfg=white
 hi Visual           ctermfg=white   ctermbg=4
 hi Directory        ctermfg=red
-hi Conceal          ctermfg=black   ctermbg=none    cterm=none
+hi conceal          ctermfg=234   ctermbg=none    cterm=none
 
 hi IncSearch        ctermfg=none ctermbg=237 cterm=none
 hi Search           ctermfg=none ctermbg=237
@@ -51,6 +51,7 @@ hi FoldColumn       ctermfg=94    ctermbg=16      cterm=bold
 
 " Syntax highlighting
 hi Comment          ctermfg=black   ctermbg=none    cterm=italic
+hi SpecialComment   ctermfg=250   ctermbg=none    cterm=italic
 hi Todo             ctermfg=yellow  ctermbg=none    cterm=inverse
 hi Boolean          ctermfg=green   cterm=bold
 hi String           ctermfg=green   cterm=none
@@ -93,6 +94,15 @@ hi bb6 ctermbg=240
 hi bb7 ctermbg=241
 hi bb8 ctermbg=242
 
+" hi Type ctermfg=30
+" hi TypeOp ctermfg=30
+
+hi TypeSig ctermfg=103
+hi TypeSigOp ctermfg=111
+
+" hi Builtin          ctermfg=124
+hi Builtin          ctermfg=130
+
 " :let id2 = matchadd('bb3', '\%3l\%4c\_.*\%5l\%22c')
 " :let id3 = matchadd('bb4', '\%4l\%6c\_.*\%5l\%21c')
 " :let id4 = matchadd('bb5', '\%5l\%8c\_.*\%5l\%20c')
@@ -105,5 +115,10 @@ hi bb8 ctermbg=242
 " :call matchdelete(id5)
 "
 
+hi ALEErrorSign ctermfg=red ctermbg=none
+hi ALEWarningSign ctermfg=red ctermbg=none
 
-
+hi GitGutterAdd ctermfg=green
+hi GitGutterChange ctermfg=yellow
+hi GitGutterDelete ctermfg=red
+hi GitGutterChangeDelete ctermfg=yellow
