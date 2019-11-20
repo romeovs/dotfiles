@@ -4,7 +4,7 @@
 
 [core]
   abbrev = 9
-	excludesfile = /Users/romeo/.config/git/excludes
+  excludesfile = /Users/romeo/.config/git/excludes
 
 [advice]
   detachedHead = true
@@ -24,10 +24,14 @@
 [alias]
   s = status
   c = "!f() { git commit -m \"$*\"; }; f"
+  ch = checkout
   graph = log --graph --pretty=format:'%C(yellow)%h %C(black bold)%d %Creset%s' --all
   unstage = reset HEAD --
   track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"
   amend = commit --amend --no-edit
+  fixup = "!f() { git commit --fixup=\"$1\"; git rebase -i --autosquash --autostash \"$1\"~1; }; f"
+  new-branch = checkout -b
+  cleanup = "!f() { git branch --merged | grep -v '^\\*' | grep -v 'master' | xargs git branch -d; }; f"
 
 [diff]
   compactionHeuristic = true
