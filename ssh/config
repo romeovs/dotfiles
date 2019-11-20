@@ -1,0 +1,41 @@
+UseKeychain yes
+
+# host *
+#   IdentitiesOnly yes
+#   AddKeysToAgent yes
+#   UseKeychain yes
+#   IdentityFile ~/.ssh/id_rsa
+
+Host github
+  Hostname github.com
+  User git
+
+Host gitlab.com
+  User romeovs
+  IdentityFile ~/.ssh/gitlab
+
+Host do
+  Hostname 146.185.140.158
+  User romeovs
+  IdentityFile ~/.ssh/id_ocean
+
+Host rpi
+  Hostname raspberrypi.local
+  User pi
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rpi
+
+# Host rbp
+#   Hostname www.romeovansnick.be
+#   Port 6102
+#   User romeovs
+
+# Host nuc
+#   Hostname 192.168.2.1
+#   IdentityFile ~/.ssh/id_rsa
+#   # Hostname dns.romeovansnick.be
+#   Port 6103
+#   User romeovs
+
+# vim: ft=sshconfig

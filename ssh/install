@@ -1,0 +1,8 @@
+
+mkdir -p "$HOME/.ssh"
+
+ln -sf "${PWD}/config" "$HOME/.ssh/"
+ln -sf "${PWD}/id_rsa.pub" "$HOME/.ssh/"
+chmod 600 "${PWD}/config"
+
+# vim: ft=zsh
