@@ -1,4 +1,5 @@
 function fish_prompt
+  printf "$THEFUCK_COMMAND_MARK"
   set_color red
   printf (pwd | sed "s|$HOME|~|" | xargs -0 basename)
   printf " "

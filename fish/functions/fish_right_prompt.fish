@@ -38,7 +38,7 @@ function fish_right_prompt --description "Write out the right prompt"
     printf " ("
 
     set_color normal
-    echo $branch | sed "s|feature/|f.../|"
+    echo $branch | sed "s|feature/|f/|"
 
     set_color white
     printf ")"
@@ -62,6 +62,11 @@ function fish_right_prompt --description "Write out the right prompt"
   # time
   set_color black
   date "+ %H:%M:%S "
+
+  set_color blue
+  printf "("
+  printf (ps aux | awk '$8~/T/' | awk '$7~/'(tty | sed s:/dev/tty::)'/' | wc -l)
+  printf ")"
 
   set_color normal
 end

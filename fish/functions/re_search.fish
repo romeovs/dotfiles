@@ -1,0 +1,1 @@
+/Users/romeo/.config/fisherman/re-search/re_search.fish
