@@ -15,6 +15,10 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " set correct vimdir
 set runtimepath+=$VIM_HOME
 
+syntax match spaces /  / conceal cchar= "Don't forget the space after cchar!
+set concealcursor=nvi
+set conceallevel=1
+
 " plugins <<
 call plug#begin(expand('$VIM_HOME/bundle/'))
 
@@ -38,10 +42,13 @@ Plug 'AndrewRadev/splitjoin.vim'
 " golang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'godoctor/godoctor.vim', { 'for': 'go' }
-let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 let g:go_auto_sameids = 0
-let g:go_updatetime = 300
+let g:go_updatetime = 100
 let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_info_mode='gopls'
 
 " fish
 Plug 'dag/vim-fish'
@@ -60,9 +67,15 @@ Plug 'pangloss/vim-javascript'
 Plug 'wokalski/autocomplete-flow'
 
 let g:ale_completion_enabled = 1
-let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fixers = {
+\ 'javascript': ['eslint'],
+\  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
+\ }
 let g:ale_linters = {
 \ 'javascript': ['flow', 'eslint'],
+\ 'typescript': ['eslint', 'tsserver'],
+\ 'typescriptreact': ['eslint', 'tsserver'],
 \ 'python': ['flake8', 'pylint']
 \ }
 let g:ale_set_quickfix = 0
@@ -74,6 +87,7 @@ let g:ale_sign_error = '!!'
 let g:ale_sign_warning = '!!'
 let g:ale_set_highlights = 0
 let g:ale_fix_on_save = 1
+let g:ale_javascript_flow_use_respect_pragma = 0
 
 Plug 'w0rp/ale'
 
@@ -125,6 +139,7 @@ Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 " typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'peitalin/vim-jsx-typescript'
 
 " Ziglang
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
@@ -201,7 +216,7 @@ set fillchars=fold:\ ,stl:\ ,stlnc:\ ,vert:\|
 " file handling <<
 set encoding=utf-8  " set file encoding
 set autoread        " auto read the file if it was modified
-set autochdir       " automatically change to dir of file
+" set autochdir       " automatically change to dir of file
 set suffixes=.log,.aux,.out,,.pdf,.o,.hi
 " >>
 
