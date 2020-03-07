@@ -65,6 +65,7 @@ hi Number           ctermfg=yellow  cterm=none
 hi Special          ctermfg=red     cterm=none
 hi Operator         ctermfg=red     cterm=none
 hi PreProc          ctermfg=229
+hi PreProcSpecial   ctermfg=228
 
 hi TabLineSel       ctermfg=yellow  ctermbg=none    cterm=none
 hi TabLine          ctermfg=white   ctermbg=none    cterm=none

@@ -13,8 +13,6 @@ hi link jsGlobals Builtin
 
 hi link typescriptVariable Special
 
-hi link typescriptMember Normal
-hi link typescriptBraces Normal
 
 hi link typescriptInterfaceKeyword Keyword
 hi link typescriptTypeKeyword Keyword
@@ -27,15 +25,36 @@ hi link typescriptTypeBrackets TypeSigOp
 hi link typescriptMemberOptionality TypeSigOp
 hi link typescriptFuncTypeArrow TypeSigOp
 hi link typescriptTypeBracket TypeSigOp
+hi link typescriptUnion TypeSigOp
 hi link typescriptFuncType TypeSig
-
+hi link typescriptMember TypeSig
+hi link typescriptBraces Normal
+hi link typescriptStringLiteralType TypeSig
+hi link typescriptObjectType TypeSig
+hi link typescriptOptionalMark TypeSigOp
+hi link typescriptComputedMember TypeSig
+hi link typescriptAliasKeyword TypeSig
+hi link typescriptAliasDeclaration TypeSig
+hi link typescriptTypeQuery TypeSigOp
+hi link typescriptCastKeyword TypeSig
+hi link typescriptObjectType TypeSig
 hi link typescriptCall Normal
+hi link typescriptRestOrSpread TypeSigOp
+
 hi link typescriptFuncKeyword Special
 hi link typescriptObjectLabel Normal
 hi link typescriptParens Normal
 hi link typescriptProp Normal
 hi link typescriptBOMWindowMethod Normal
 hi link typescriptFileReaderProp Normal
+hi link typescriptStringMethod Normal
+hi link typescriptDOMEventMethod Normal
+hi link typescriptArrowFunc Keyword
+hi link typescriptTestGlobal Normal
+hi link typescriptNodeGlobal Normal
+hi link typescriptGlobalMethod Normal
+hi link typescriptPromiseStaticMethod Normal
+hi link typescriptJSONStaticMethod Normal
 
 hi link tsxTagName PreProc
 hi link tsxTag PreProc
@@ -55,7 +74,7 @@ hi link typescriptModuleAs Keyword
 hi link typescriptFrom Keyword
 hi link typescriptDefault Keyword
 hi link typescriptEndColons Normal
-hi link typescriptAliasDeclaration Normal
+" hi link typescriptAliasDeclaration Normal
 hi link typescriptArrowFuncArg Normal
 hi link typescriptBinaryOp Operator
 hi link typescriptAssign Operator
@@ -82,14 +101,18 @@ hi typescriptDocTags ctermfg=124 cterm=italic
 hi link typescriptFuncName Normal
 hi link typescriptFuncKeyword Keyword
 
-
-hi link typescriptBOMWindowProp Builtin
+hi link typescriptBOMWindowProp Normal
 hi link typescriptMathStaticMethod Normal
 hi link typescriptDOMFormProp Normal
 hi link typescriptDOMDocMethod Normal
 hi link typescriptConsoleMethod Normal
 hi link typescriptMathStaticProp Normal
 hi link typescriptES6SetProp Normal
+hi link typescriptRegExpMethod Normal
+hi link typescriptBOMNavigatorProp Normal
+hi link typescriptFuncComma Normal
+hi link typescriptBOM Normal
+hi link typescriptKeywordOp Special
 
 hi link typescriptBOMLocationMethod Normal
 hi link typescriptBOMStorageMethod Normal
