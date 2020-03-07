@@ -5,6 +5,7 @@
 [core]
   abbrev = 9
   excludesfile = /Users/romeo/.config/git/excludes
+	pager = /usr/local//share/git-core/contrib/diff-highlight/diff-highlight | less
 
 [advice]
   detachedHead = true
@@ -58,6 +59,12 @@
   new = green
   commit = yellow
   whitespace = normal red
+
+[color "diff-highlight"]
+	oldNormal = red
+  oldHighlight = red bold
+  newNormal = green
+  newHighlight = green bold
 
 [color "decorate"]
   branch = black bold
