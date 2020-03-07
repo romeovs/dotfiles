@@ -9,6 +9,6 @@ SET __fish_init_2_39_8:\x1d
 SET __fish_init_2_3_0:\x1d
 SET fish_greeting:\x1d
 SET fish_key_bindings:fish_vi_key_bindings
-SET fish_user_abbreviations:\x1d
+SET fish_user_abbreviations:dc\x20docker\x2dcompose
 SET fish_user_paths:/Users/romeo/\x2eyarn/bin
 SET fisher_dependency_count:re\x2dsearch

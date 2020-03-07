@@ -3,7 +3,7 @@ set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_CACHE_HOME $HOME/.cache
 
 set -x GOPATH $HOME/code/go
-set -x PATH $HOME/.config/flamegraph $XDG_CONFIG_HOME/fisherman/re-search /usr/local/opt/python@2/bin /usr/local/opt/ruby/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/bin /usr/bin /bin /usr/local/pgsql/bin /usr/local/sbin /usr/sbin /sbin /usr/local/opt/go/libexec/bin $GOPATH/bin bin /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin $HOME/.cargo/bin $HOME/.config/bin ./node_modules/.bin $PATH
+set -x PATH $XDG_CONFIG_HOME/fisherman/re-search /usr/local/opt/python@2/bin /usr/local/opt/ruby/bin /usr/local/opt/coreutils/libexec/gnubin /usr/local/bin /usr/bin /bin /usr/local/pgsql/bin /usr/local/sbin /usr/sbin /sbin /usr/local/opt/go/libexec/bin $GOPATH/bin bin /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin $HOME/.cargo/bin $HOME/.config/bin ./node_modules/.bin $PATH
 
 set -x GNUTERM X11
 set -x HOMEBREW_PREFIX (/usr/local/bin/brew --prefix)
@@ -69,7 +69,38 @@ function e --wraps vim
   vim "$argv"
 end
 
+function run
+	set_color black
+	echo "Running $argv[1]..."
+	set_color normal
+
+  yarn --silent run $argv
+end
+
+function runp
+	set_color black
+	echo "Running $argv..."
+	set_color normal
+
+	npx concurrently "$argv"
+end
+
+function __fish_run
+  if test -e package.json; and type -q jq
+    jq -r '.scripts | to_entries | map("\(.key)\t\(.value | tostring)") | .[]' package.json
+	else if test -e Makefile
+		__fish_complete_make_targets
+  else if type -q jq
+    command yarn run --json 2> /dev/null | jq -r '.data.hints? | to_entries | map("\(.key)\t\(.value | tostring |.[0:20])") | .[]'
+  end
+end
+
+complete -f -c run -a "(__fish_run)"
+complete -f -c runp -a "(__fish_run)"
+
+
 alias bytes="wc -c | numfmt --to=iec-i --suffix=B --padding=7"
+abbr -a dc docker-compose
 
 # fuck
 eval (thefuck --alias | tr '\n' ';')
@@ -129,3 +160,24 @@ export  NNN_USE_EDITOR=1
 # set -x DOCKER_CERT_PATH /Users/romeo/.docker/machine/machines/default
 # set -x DOCKER_TLS_VERIFY 1
 # set -x DOCKER_MACHINE_NAME default
+
+# Nodenv
+# See https://github.com/nodenv/nodenv#how-nodenv-hooks-into-your-shell
+set -gx PATH '/Users/romeo/.nodenv/shims' $PATH
+set -gx NODENV_SHELL fish
+source '/usr/local/Cellar/nodenv/1.3.1/libexec/../completions/nodenv.fish'
+command nodenv rehash 2>/dev/null
+function nodenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    source (nodenv "sh-$command" $argv|psub)
+  case '*'
+    command nodenv "$command" $argv
+  end
+end
+
+set -x ASDF_DATA_DIR ~/.config/asdf
+# source /usr/local/opt/asdf/asdf.fish
